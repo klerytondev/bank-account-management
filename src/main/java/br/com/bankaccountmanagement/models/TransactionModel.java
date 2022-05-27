@@ -48,6 +48,9 @@ public class TransactionModel implements Serializable {
 		return transactionDate;
 	}
 
+	/*
+	 * Salva a data da transação.
+	 * */
 	public void setTransactionDate() {
 		this.transactionDate = LocalDateTime.now();
 	}

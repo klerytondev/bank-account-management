@@ -48,7 +48,7 @@ public class AccountModel implements Serializable {
 	private LocalDateTime createdDate;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "account_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_transactions"))
+	@JoinColumn(name = "account_id", referencedColumnName = "idAccount", foreignKey = @ForeignKey(name = "fk_transactions"))
 	private Set<TransactionModel> transactionModels;
 
 	public AccountModel() {
@@ -101,6 +101,9 @@ public class AccountModel implements Serializable {
 		return createdDate;
 	}
 
+	/*
+	 * Salva a data da criação da conta.
+	 * */
 	public void setCreatedDate() {
 		this.createdDate = LocalDateTime.now();
 	}
