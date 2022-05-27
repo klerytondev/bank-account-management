@@ -61,7 +61,8 @@ public class AccountModel implements Serializable {
 		this.withdrawalLimit = withdrawalLimit;
 		this.activeFlag = activeFlag;
 		this.accountType = accountType;
-		this.createdDate = createdDate;
+		// Salva a data da criação da conta.
+		this.createdDate = LocalDateTime.now();
 		this.transactionModels = transactionModels;
 	}
 
@@ -99,13 +100,6 @@ public class AccountModel implements Serializable {
 
 	public LocalDateTime getCreatedDate() {
 		return createdDate;
-	}
-
-	/*
-	 * Salva a data da criação da conta.
-	 * */
-	public void setCreatedDate() {
-		this.createdDate = LocalDateTime.now();
 	}
 
 	public Set<TransactionModel> getTransactionModels() {

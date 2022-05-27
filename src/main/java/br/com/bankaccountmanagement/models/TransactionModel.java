@@ -29,11 +29,12 @@ public class TransactionModel implements Serializable {
 	public TransactionModel() {
 	}
 
-	public TransactionModel(Long idTransacao, Double value, LocalDateTime transactionDate) {
+	public TransactionModel(Long idTransacao, Double value) {
 		super();
 		this.idTransacao = idTransacao;
 		this.value = value;
-		this.transactionDate = transactionDate;
+		// Salva a data da transação.
+		this.transactionDate = LocalDateTime.now();
 	}
 
 	public Double getValue() {
@@ -46,13 +47,6 @@ public class TransactionModel implements Serializable {
 
 	public LocalDateTime getTransactionDate() {
 		return transactionDate;
-	}
-
-	/*
-	 * Salva a data da transação.
-	 * */
-	public void setTransactionDate() {
-		this.transactionDate = LocalDateTime.now();
 	}
 
 	public Long getIdTransacao() {
