@@ -34,13 +34,12 @@ public class PeopleModel implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String cpf;
 
+	//Uma pessoa pode ter várias contas @oneToMany
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "people_id", referencedColumnName = "idPeople", foreignKey = @ForeignKey(name = "fk_accounts"))
 	private Set<AccountModel> accountModels;
 
 	@Column(nullable = false)
-	//TODO deve ficar no DTO
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date birthDate;
 
 	public PeopleModel() {

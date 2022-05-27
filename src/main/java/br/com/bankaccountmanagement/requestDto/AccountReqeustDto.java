@@ -1,5 +1,7 @@
 package br.com.bankaccountmanagement.requestDto;
 
+import java.util.Objects;
+
 import javax.validation.constraints.NotEmpty;
 
 import br.com.bankaccountmanagement.models.enums.AccountType;
@@ -64,6 +66,24 @@ public class AccountReqeustDto {
 
 	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(accountType, activeFlag, balance, withdrawalLimit);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AccountReqeustDto other = (AccountReqeustDto) obj;
+		return accountType == other.accountType && activeFlag == other.activeFlag
+				&& Objects.equals(balance, other.balance) && Objects.equals(withdrawalLimit, other.withdrawalLimit);
 	}
 
 }
