@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo Starting build phase
+      - mvn clean package
+  post_build:
+    commands:
+      - echo Build successful
+artifacts:
+  files:
+    - target/bank_account_management_api.jar
+  discard-paths: yes
