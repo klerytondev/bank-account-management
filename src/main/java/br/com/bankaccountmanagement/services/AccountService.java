@@ -1,5 +1,7 @@
 package br.com.bankaccountmanagement.services;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +9,12 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.bankaccountmanagement.models.AccountModel;
+import br.com.bankaccountmanagement.models.PeopleModel;
 import br.com.bankaccountmanagement.repositories.AccountRepository;
+import br.com.bankaccountmanagement.repositories.PeopleRepository;
 import br.com.bankaccountmanagement.requestDto.AccountRequestDto;
 import br.com.bankaccountmanagement.services.exceptions.ConflictDeDadosException;
+import br.com.bankaccountmanagement.services.exceptions.ObjetoNaoEncontradoException;
 
 @Service
 public class AccountService {
@@ -17,19 +22,34 @@ public class AccountService {
 	@Autowired
 	AccountRepository accountRepository;
 
+	@Autowired
+	PeopleRepository peopleRepository;
+
 	@Transactional
-	// Create account
-	public AccountModel createAccount(AccountRequestDto accountRequestDto) {
+	// Create account e salva em uma pessoa
+	public PeopleModel createAccount(AccountRequestDto accountRequestDto, Long idPeople) {
 
-		AccountModel accountModel = convertDtoToModel(accountRequestDto);
+		// Verifica se a people existe no banco
+		Optional<PeopleModel> peopleModelOptional = peopleRepository.findById(idPeople);
+		peopleModelOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("People not found."));
 
-		// Exceção para verificar de se o CPF já está em uso no banco
+		// Converte o accountRequestDto em um accountModel
+		AccountModel accountModelPersisti = new AccountModel();
+		accountModelPersisti = convertDtoToModel(accountRequestDto);
+
+		// Seta uma account em people
+		peopleModelOptional.get().setAccountModels(accountModelPersisti);
+
+		PeopleModel peopleModelPersisti;
+
+		// lança uma exceção se a account já existir na people
 		try {
-			accountRepository.save(accountModel);
+			peopleModelPersisti = peopleRepository.save(peopleModelOptional.get());
 		} catch (DataIntegrityViolationException e) {
-			throw new ConflictDeDadosException("CPF is already in use!");
+			throw new ConflictDeDadosException("Account is already in use!");
 		}
-		return accountModel;
+		return peopleModelPersisti;
+
 	}
 
 	/*

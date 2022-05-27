@@ -72,8 +72,8 @@ public class PeopleModel implements Serializable {
 		return accountModels;
 	}
 
-	public void setAccountModels(Set<AccountModel> accountModels) {
-		this.accountModels = accountModels;
+	public void setAccountModels(AccountModel accountModel) {
+		this.accountModels.add(accountModel);
 	}
 
 	public Date getBirthDate() {

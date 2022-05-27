@@ -32,10 +32,10 @@ public class AccountModel implements Serializable {
 	private Long idAccount;
 
 	@Column(nullable = false)
-	private Double balance;
+	private Double balance = 0.0;
 
 	@Column(nullable = false)
-	private Double withdrawalLimit;
+	private Double withdrawalLimit = 0.0;
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
