@@ -2,6 +2,7 @@ package br.com.bankaccountmanagement.models;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -53,6 +54,24 @@ public class TransactionModel implements Serializable {
 
 	public Long getIdTransacao() {
 		return idTransacao;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(idTransacao, transactionDate, value);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TransactionModel other = (TransactionModel) obj;
+		return Objects.equals(idTransacao, other.idTransacao) && Objects.equals(transactionDate, other.transactionDate)
+				&& Objects.equals(value, other.value);
 	}
 
 }
