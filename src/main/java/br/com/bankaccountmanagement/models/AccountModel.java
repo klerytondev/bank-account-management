@@ -1,7 +1,7 @@
 package br.com.bankaccountmanagement.models;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
@@ -29,7 +29,7 @@ public class AccountModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long idAccount;
 
 	@Column(nullable = false)
 	private Double balance;
@@ -45,7 +45,7 @@ public class AccountModel implements Serializable {
 	@Column(nullable = false)
 	private AccountType accountType;
 
-	private LocalDate createdDate;
+	private LocalDateTime createdDate;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "account_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_transactions"))
@@ -55,7 +55,7 @@ public class AccountModel implements Serializable {
 	}
 
 	public AccountModel(Double balance, Double withdrawalLimit, ActiveFlag activeFlag, AccountType accountType,
-			LocalDate createdDate, Set<TransactionModel> transactionModels) {
+			LocalDateTime createdDate, Set<TransactionModel> transactionModels) {
 		super();
 		this.balance = balance;
 		this.withdrawalLimit = withdrawalLimit;
@@ -97,12 +97,12 @@ public class AccountModel implements Serializable {
 		this.accountType = accountType;
 	}
 
-	public LocalDate getCreatedDate() {
+	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(LocalDate createdDate) {
-		this.createdDate = createdDate;
+	public void setCreatedDate() {
+		this.createdDate = LocalDateTime.now();
 	}
 
 	public Set<TransactionModel> getTransactionModels() {
@@ -114,12 +114,13 @@ public class AccountModel implements Serializable {
 	}
 
 	public Long getId() {
-		return id;
+		return idAccount;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(accountType, activeFlag, balance, createdDate, id, transactionModels, withdrawalLimit);
+		return Objects.hash(accountType, activeFlag, balance, createdDate, idAccount, transactionModels,
+				withdrawalLimit);
 	}
 
 	@Override
@@ -133,7 +134,8 @@ public class AccountModel implements Serializable {
 		AccountModel other = (AccountModel) obj;
 		return accountType == other.accountType && activeFlag == other.activeFlag
 				&& Objects.equals(balance, other.balance) && Objects.equals(createdDate, other.createdDate)
-				&& Objects.equals(id, other.id) && Objects.equals(transactionModels, other.transactionModels)
+				&& Objects.equals(idAccount, other.idAccount)
+				&& Objects.equals(transactionModels, other.transactionModels)
 				&& Objects.equals(withdrawalLimit, other.withdrawalLimit);
 	}
 
