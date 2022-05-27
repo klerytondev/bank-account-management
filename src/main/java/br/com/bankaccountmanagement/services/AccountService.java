@@ -26,7 +26,7 @@ public class AccountService {
 	PeopleRepository peopleRepository;
 
 	@Transactional
-	// Create account e salva em uma pessoa
+	// Create account e salva em uma people
 	public PeopleModel createAccount(AccountRequestDto accountRequestDto, Long idPeople) {
 
 		// Verifica se a people existe no banco
