@@ -10,7 +10,7 @@ import br.com.bankaccountmanagement.models.enums.ActiveFlag;
 /*
  * Esta classe Transferi e manipula atributos recebidos por parametro da account via controller
  * */
-public class AccountReqeustDto {
+public class AccountRequestDto {
 
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
@@ -24,10 +24,10 @@ public class AccountReqeustDto {
 
 	private AccountType accountType;
 
-	public AccountReqeustDto() {
+	public AccountRequestDto() {
 	}
 
-	public AccountReqeustDto(@NotEmpty(message = "{campo.balance.obrigatorio}") Double balance,
+	public AccountRequestDto(@NotEmpty(message = "{campo.balance.obrigatorio}") Double balance,
 			@NotEmpty(message = "{campo.limite.obrigatorio}") Double withdrawalLimit, ActiveFlag activeFlag,
 			AccountType accountType) {
 		this.balance = balance;
@@ -81,7 +81,7 @@ public class AccountReqeustDto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AccountReqeustDto other = (AccountReqeustDto) obj;
+		AccountRequestDto other = (AccountRequestDto) obj;
 		return accountType == other.accountType && activeFlag == other.activeFlag
 				&& Objects.equals(balance, other.balance) && Objects.equals(withdrawalLimit, other.withdrawalLimit);
 	}
