@@ -16,8 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 //informa que esta classe é uma entidade
 @Entity
 @Table(name = "TB_PEOPLE")

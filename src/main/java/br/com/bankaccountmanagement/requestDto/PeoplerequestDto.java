@@ -20,7 +20,6 @@ public class PeoplerequestDto {
 
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
-
 	@NotEmpty(message = "{campo.nome.obrigatorio}")
 	@Length(max = 50, message = "{campo.nome.caracteres}")
 	private String name;
@@ -41,7 +40,6 @@ public class PeoplerequestDto {
 			@NotEmpty(message = "{campo.nome.obrigatorio}") @Length(max = 50, message = "{campo.nome.caracteres}") String name,
 			@CPF(message = "{campo.accountcpf.nulo}") String cpf, Set<AccountModel> accountModels,
 			@NotEmpty(message = "{campo.data.obrigatorio}") Date birthDate) {
-		super();
 		this.name = name;
 		this.cpf = cpf;
 		this.accountModels = accountModels;
