@@ -13,12 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bankaccountmanagement.models.AccountModel;
 import br.com.bankaccountmanagement.models.TransactionModel;
 import br.com.bankaccountmanagement.requestDto.DepositRequestDto;
 import br.com.bankaccountmanagement.services.TransactionService;
-import br.com.gleisonandrade.bancoapi.domain.Extrato;
-import br.com.gleisonandrade.bancoapi.dto.ExtratoDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -35,17 +32,16 @@ public class TransactionController {
 
 	@ApiOperation(value = "Realiza o depósito de dinheiro em uma account.")
 	@PostMapping("/depositar/{idAccount}")
-	public ResponseEntity<Object> depositar(@ApiParam @Valid @RequestBody DepositRequestDto depositoDTO,
+	public ResponseEntity<Object> deposit(@ApiParam @Valid @RequestBody DepositRequestDto depositoDTO,
 			@PathVariable Long idAccount) {
 		TransactionModel transactionModel = transactionService.depositAccount(depositoDTO, idAccount);
-		return ResponseEntity.status(HttpStatus.CREATED).body("Saldo atualizado!" + transactionModel);
+		return ResponseEntity.status(HttpStatus.CREATED).body("Saldo atualizado! " + transactionModel);
 	}
 
+	@ApiOperation(value = "Busca o saldo de uma account.")
 	@GetMapping("/saldo/{idAccount}")
-	public ResponseEntity<ExtratoDTO> extrato(@ApiParam @PathVariable Long idAccount){
-		AccountModel accountModel = transactionService.balanceAccount(idAccount);
-		ExtratoDTO extratoDTO = new ExtratoDTO(extrato);
-
-		return ResponseEntity.ok(extratoDTO);
-
+	public ResponseEntity<Object> extrato(@ApiParam @PathVariable Long idAccount) {
+		TransactionModel transactionModel = transactionService.balanceAccount(idAccount);
+		return ResponseEntity.status(HttpStatus.CREATED).body("Saldo: " + transactionModel);
+	}
 }

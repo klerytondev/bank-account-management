@@ -25,11 +25,27 @@ public class TransactionService {
 		// Verifica se a account existe no banco
 		Optional<AccountModel> accocuntModelOptional = accountRepository.findById(idAccount);
 		accocuntModelOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("Account not found."));
-		//Incrementa valor depositado no saldo existente
+		// Incrementa valor depositado no saldo existente
 		accocuntModelOptional.get().setBalance(depositoDTO.getValue() + accocuntModelOptional.get().getBalance());
 		TransactionModel transactionModelPersisit = new TransactionModel();
-		//Cria registro da transação para a operação deposito
-		transactionModelPersisit.setValue(accocuntModelOptional.get().getBalance());
+		// Cria registro da transação para a operação deposito
+		transactionModelPersisit.setValue(depositoDTO.getValue());
+		// Salva no banco uma nova transação
+		transactionRepository.save(transactionModelPersisit);
+		return transactionModelPersisit;
+	}
+
+	public TransactionModel balanceAccount(Long idAccount) {
+		// Verifica se a account existe no banco
+		Optional<AccountModel> accocuntModelOptional = accountRepository.findById(idAccount);
+		accocuntModelOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("Account not found."));
+		// Busca o saldo existente na account e armazena em uma variável
+		Double balance = accocuntModelOptional.get().getBalance();
+		TransactionModel transactionModelPersisit = new TransactionModel();
+		// Cria registro da transação para a operação deposito
+		transactionModelPersisit.setValue(balance);
+		// Salva no banco uma nova transação
+		transactionRepository.save(transactionModelPersisit);
 		return transactionModelPersisit;
 	}
 

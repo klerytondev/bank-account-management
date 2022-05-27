@@ -1,7 +1,7 @@
 package br.com.bankaccountmanagement.responseDto;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -11,7 +11,7 @@ public class BalanceResponseDto {
 	
 	private Long idAccount;
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
-	private LocalDate date;
+	private LocalDateTime date;
 	private Double balance;
 	
 	public BalanceResponseDto() {
@@ -20,7 +20,7 @@ public class BalanceResponseDto {
 	public BalanceResponseDto(AccountModel accountModel) {
 		this.idAccount = accountModel.getId();
 		this.balance = accountModel.getBalance();
-		this.date = LocalDate.now();
+		this.date = LocalDateTime.now();
 	}
 
 	public Long getIdAccount() {
@@ -47,9 +47,4 @@ public class BalanceResponseDto {
 		this.balance = balance;
 	}
 	
-	
-	
-	
-	
-
 }
