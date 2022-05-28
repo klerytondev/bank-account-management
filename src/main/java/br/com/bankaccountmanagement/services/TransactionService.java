@@ -83,7 +83,7 @@ public class TransactionService {
 
 	// Retorna todas as transações de uma account
 	@Transactional
-	public List<TransactionModel> findAll(Long idAccount) {
+	public List<TransactionModel> getAllTransactions(Long idAccount) {
 
 		// Verifica se a account existe no banco
 		Optional<AccountModel> accocuntModelOptional = accountRepository.findById(idAccount);

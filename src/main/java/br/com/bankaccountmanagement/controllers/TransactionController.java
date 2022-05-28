@@ -41,7 +41,7 @@ public class TransactionController {
 
 	@ApiOperation(value = "Busca o saldo de uma account.")
 	@GetMapping("/saldo/{idAccount}")
-	public ResponseEntity<Object> extrato(@ApiParam @PathVariable Long idAccount) {
+	public ResponseEntity<Object> balanceAccount(@ApiParam @PathVariable Long idAccount) {
 		TransactionModel transactionModel = transactionService.balanceAccount(idAccount);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Saldo: " + transactionModel);
 	}
@@ -56,8 +56,8 @@ public class TransactionController {
 
 	@ApiOperation(value = "Retorna todas as transações de auma account")
 	@GetMapping("/transactions/{idAccount}")
-	public ResponseEntity<Object> getOneAccountModel(@ApiParam @PathVariable Long idAccount) {
-		return ResponseEntity.status(HttpStatus.OK).body(transactionService.findAll(idAccount));
+	public ResponseEntity<Object> getAllTransactions(@ApiParam @PathVariable Long idAccount) {
+		return ResponseEntity.status(HttpStatus.OK).body(transactionService.getAllTransactions(idAccount));
 
 	}
 

@@ -11,4 +11,7 @@ import br.com.bankaccountmanagement.models.PeopleModel;
 
 public interface PeopleRepository extends JpaRepository<PeopleModel, Long> {
 
+	// Metodo de consulta ao banco de dados pelo cpf
+	Boolean existsByCpf(String existsCpf);
+
 }
