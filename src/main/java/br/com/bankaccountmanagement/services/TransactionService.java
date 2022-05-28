@@ -31,6 +31,7 @@ public class TransactionService {
 	@Transactional
 	public TransactionModel depositAccount(DepositRequestDto depositoDTO, Long idAccount) {
 		// Verifica se a account existe no banco
+		//TODO verificar porque está lançando status 500
 		Optional<AccountModel> accocuntModelOptional = accountRepository.findById(idAccount);
 		accocuntModelOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("Account not found."));
 		// Incrementa valor depositado no saldo existente
@@ -38,6 +39,7 @@ public class TransactionService {
 		TransactionModel transactionModelPersisit = new TransactionModel();
 		// Cria registro da transação para a operação deposito
 		transactionModelPersisit.setValue(depositoDTO.getValue());
+		transactionModelPersisit.setIdAccount(idAccount);
 		// Salva no banco uma nova transação
 		transactionRepository.save(transactionModelPersisit);
 		return transactionModelPersisit;

@@ -3,6 +3,7 @@ package br.com.bankaccountmanagement.requestDto;
 import java.util.Objects;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import br.com.bankaccountmanagement.models.enums.AccountType;
 import br.com.bankaccountmanagement.models.enums.ActiveFlag;
@@ -15,7 +16,7 @@ public class AccountRequestDto {
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
 
-	@NotEmpty(message = "{campo.limite.obrigatorio}")
+	@NotNull(message = "{campo.limite.obrigatorio}")
 	private Double withdrawalLimit;
 
 	private ActiveFlag activeFlag;

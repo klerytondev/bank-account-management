@@ -45,13 +45,18 @@ public class AccountModel implements Serializable {
 	@Column(nullable = false)
 	private AccountType accountType;
 
+	@Column
 	private LocalDateTime createdDate;
 
+	// Uma account pode ter várias transações @oneToMany
+	// TODO verificar porque não está realizando associação com transactions
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "account_id", referencedColumnName = "idAccount", foreignKey = @ForeignKey(name = "fk_transactions"))
+	@JoinColumn(name = "account_id", foreignKey = @ForeignKey(name = "fk_transactions"))
 	private Set<TransactionModel> transactionModels;
 
 	public AccountModel() {
+		// Salva a data da criação da conta.
+		this.createdDate = LocalDateTime.now();
 	}
 
 	public AccountModel(Double balance, Double withdrawalLimit, ActiveFlag activeFlag, AccountType accountType,
@@ -61,8 +66,6 @@ public class AccountModel implements Serializable {
 		this.withdrawalLimit = withdrawalLimit;
 		this.activeFlag = activeFlag;
 		this.accountType = accountType;
-		// Salva a data da criação da conta.
-		this.createdDate = LocalDateTime.now();
 		this.transactionModels = transactionModels;
 	}
 

@@ -4,7 +4,7 @@ import javax.validation.constraints.Pattern;
 
 public enum AccountType {
 	
-	COREENTE("corrente"), POUPANCA("poupanca");
+	CORRENTE("corrente"), POUPANCA("poupanca");
 	
 	/*
 	 * @regex validar os possiveis tipos de bandeiras. Só são permitidas as bandeiras

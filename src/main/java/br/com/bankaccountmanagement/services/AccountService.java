@@ -33,7 +33,7 @@ public class AccountService {
 		Optional<PeopleModel> peopleModelOptional = peopleRepository.findById(idPeople);
 		peopleModelOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("People not found."));
 
-		// Converte o accountRequestDto em um accountModel
+		// Cria uma nova account e converte o accountRequestDto em um accountModel
 		AccountModel accountModelPersisti = new AccountModel();
 		accountModelPersisti = convertDtoToModel(accountRequestDto);
 
@@ -59,6 +59,7 @@ public class AccountService {
 
 		AccountModel accountModel = new AccountModel();
 		accountModel.setWithdrawalLimit(accountRequestDto.getWithdrawalLimit());
+		accountModel.setActiveFlag(accountRequestDto.getActiveFlag());
 		accountModel.setAccountType(accountRequestDto.getAccountType());
 
 		return accountModel;

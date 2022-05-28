@@ -21,20 +21,24 @@ public class TransactionModel implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idTransacao;
 
+	@Column(name = "account_id")
+	private Long idAccount;
+
 	@Column(nullable = false)
 	private Double value;
 
 	private LocalDateTime transactionDate;
 
 	public TransactionModel() {
+		// Salva a data da transação.
+		this.transactionDate = LocalDateTime.now();
 	}
 
 	public TransactionModel(Long idTransacao, Double value) {
 		super();
 		this.idTransacao = idTransacao;
 		this.value = value;
-		// Salva a data da transação.
-		this.transactionDate = LocalDateTime.now();
+
 	}
 
 	public Double getValue() {
@@ -53,6 +57,14 @@ public class TransactionModel implements Serializable {
 		return idTransacao;
 	}
 
+	public Long getIdAccount() {
+		return idAccount;
+	}
+
+	public void setIdAccount(Long idAccount) {
+		this.idAccount = idAccount;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(idTransacao, transactionDate, value);
@@ -69,6 +81,12 @@ public class TransactionModel implements Serializable {
 		TransactionModel other = (TransactionModel) obj;
 		return Objects.equals(idTransacao, other.idTransacao) && Objects.equals(transactionDate, other.transactionDate)
 				&& Objects.equals(value, other.value);
+	}
+
+	@Override
+	public String toString() {
+		return "TransactionModel [idTransacao=" + idTransacao + ", value=" + value + ", transactionDate="
+				+ transactionDate + "]";
 	}
 
 }

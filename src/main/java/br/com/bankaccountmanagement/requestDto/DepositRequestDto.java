@@ -12,10 +12,10 @@ public class DepositRequestDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(notes = "Id da pessoa que a conta pertence. ")
-	// TODO ajustar messagem
-	@NotNull(message = "Preenchimento obrigatório")
-	private Long idAccoount;
+//	@ApiModelProperty(notes = "Id da pessoa que a conta pertence. ")
+//	// TODO ajustar messagem
+//	@NotNull(message = "Preenchimento obrigatório")
+//	private Long idAccoount;
 
 	@ApiModelProperty(notes = "Id da pessoa que a conta pertence. ")
 	// TODO ajustar messagem
@@ -29,13 +29,13 @@ public class DepositRequestDto implements Serializable {
 	@NotNull(message = "Preenchimento obrigatório")
 	private Double value;
 
-	public Long getIdAccount() {
-		return idAccoount;
-	}
-
-	public void setIdAccount(Long idPeople) {
-		this.idAccoount = idPeople;
-	}
+//	public Long getIdAccount() {
+//		return idAccoount;
+//	}
+//
+//	public void setIdAccount(Long idPeople) {
+//		this.idAccoount = idPeople;
+//	}
 
 	public AccountType getAccountType() {
 		return accountType;
@@ -51,6 +51,11 @@ public class DepositRequestDto implements Serializable {
 
 	public void setValue(Double value) {
 		this.value = value;
+	}
+
+	@Override
+	public String toString() {
+		return "DepositRequestDto [accountType=" + accountType + ", value=" + value + "]";
 	}
 
 }
