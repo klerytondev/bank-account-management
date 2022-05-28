@@ -1,6 +1,10 @@
 package br.com.bankaccountmanagement.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +28,7 @@ public class TransactionService {
 	AccountRepository accountRepository;
 
 	// Realiza o depósito de dinheiro em uma account.
+	@Transactional
 	public TransactionModel depositAccount(DepositRequestDto depositoDTO, Long idAccount) {
 		// Verifica se a account existe no banco
 		Optional<AccountModel> accocuntModelOptional = accountRepository.findById(idAccount);
@@ -39,6 +44,7 @@ public class TransactionService {
 	}
 
 	// Busca o saldo de uma account.
+	@Transactional
 	public TransactionModel balanceAccount(Long idAccount) {
 		// Verifica se a account existe no banco
 		Optional<AccountModel> accocuntModelOptional = accountRepository.findById(idAccount);
@@ -54,7 +60,8 @@ public class TransactionService {
 	}
 
 	// Realiza o saque de dinheiro na conta.
-	private TransactionModel withdraw(WithdrawRequestDto withdrawRequestDto, Long idAccount) {
+	@Transactional
+	public TransactionModel withdraw(WithdrawRequestDto withdrawRequestDto, Long idAccount) {
 		// Verifica se a account existe no banco
 		Optional<AccountModel> accocuntModelOptional = accountRepository.findById(idAccount);
 		accocuntModelOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("Account not found."));
@@ -68,9 +75,33 @@ public class TransactionService {
 			transactionRepository.save(transactionModelPersisit);
 			return transactionModelPersisit;
 		}
+		// Exceção para caso não haja saldo suficiente para saque na account
 		throw new NegocioException(String.format(
-				"A conta não possuí saldo suficiente para essa operação! Saldo: {0}, valor a ser debitado {1}",
+				"The account does not have enough balance for this operation! Balance: {0}, amount to be debited {1}",
 				accocuntModelOptional.get().getBalance(), withdrawRequestDto.getValue()));
+	}
+
+	// Retorna todas as transações de uma account
+	@Transactional
+	public List<TransactionModel> findAll(Long idAccount) {
+
+		// Verifica se a account existe no banco
+		Optional<AccountModel> accocuntModelOptional = accountRepository.findById(idAccount);
+		accocuntModelOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("Account not found."));
+		/*
+		 * Verifica se existe transações salvas no banco de acordo com o is da account
+		 * passado, caso contrario retorna exception.
+		 */
+
+		if (accocuntModelOptional.get().getTransactionModels().isEmpty()) {
+			throw new ObjetoNaoEncontradoException("transactions not found!");
+		}
+		// Salva transactions existentes no banco de dados em uma lista de transactions
+		List<TransactionModel> transactionModelsList = new ArrayList<>();
+		for (TransactionModel transactionModel : accocuntModelOptional.get().getTransactionModels()) {
+			transactionModelsList.add(transactionModel);
+		}
+		return transactionModelsList;
 	}
 
 }

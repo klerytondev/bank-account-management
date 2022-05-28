@@ -1,7 +1,5 @@
 package br.com.bankaccountmanagement.controllers;
 
-import java.net.URI;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.bankaccountmanagement.models.TransactionModel;
 import br.com.bankaccountmanagement.requestDto.DepositRequestDto;
 import br.com.bankaccountmanagement.requestDto.WithdrawRequestDto;
 import br.com.bankaccountmanagement.services.TransactionService;
-import br.com.gleisonandrade.bancoapi.dto.SaqueDTO;
-import br.com.gleisonandrade.bancoapi.util.ContaExtrato;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -52,13 +47,18 @@ public class TransactionController {
 	}
 
 	@ApiOperation(value = "Realiza o saque de dinheiro na conta.")
-	PostMapping("/sacar/{idAccount}")
-	public ResponseEntity<Void> withdraw(@ApiParam @Valid @RequestBody WithdrawRequestDto withdrawRequestDto, @PathVariable Long idAccount) ) {
-		TransactionModel transactionModel = transactionService.depositAccount(withdrawRequestDto, idAccount);
-
-		URI uri = ServletUriComponentsBuilder.fromCurrentServletMapping().path("/{id}/extrato/{extratoId}").build()
-				.expand(extrato.getContaId(), extrato.getExtratoId()).toUri();
-		return ResponseEntity.created(uri).build();
+	@PostMapping("/sacar/{idAccount}")
+	public ResponseEntity<Object> withdraw(@ApiParam @Valid @RequestBody WithdrawRequestDto withdrawRequestDto,
+			@PathVariable Long idAccount) {
+		TransactionModel transactionModel = transactionService.withdraw(withdrawRequestDto, idAccount);
+		return ResponseEntity.status(HttpStatus.CREATED).body("Saldo atualizado! " + transactionModel);
 	}
-}
+
+	@ApiOperation(value = "Retorna todas as transações de auma account")
+	@GetMapping("/transactions/{idAccount}")
+	public ResponseEntity<Object> getOneAccountModel(@ApiParam @PathVariable Long idAccount) {
+		return ResponseEntity.status(HttpStatus.OK).body(transactionService.findAll(idAccount));
+
+	}
+
 }
