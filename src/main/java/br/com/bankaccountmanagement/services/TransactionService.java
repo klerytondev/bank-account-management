@@ -54,11 +54,6 @@ public class TransactionService {
 		accocuntModelOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("Account not found."));
 		// Busca o saldo existente na account e armazena em uma variável
 		Double balance = accocuntModelOptional.get().getBalance();
-//		TransactionModel transactionModelPersisit = new TransactionModel();
-//		// Cria registro da transação para a operação deposito
-//		transactionModelPersisit.setValue(balance);
-//		// Salva no banco uma nova transação
-//		transactionRepository.save(transactionModelPersisit);
 		return balance;
 	}
 
