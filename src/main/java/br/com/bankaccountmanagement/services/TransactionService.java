@@ -47,18 +47,18 @@ public class TransactionService {
 
 	// Busca o saldo de uma account.
 	@Transactional
-	public TransactionModel balanceAccount(Long idAccount) {
+	public Double balanceAccount(Long idAccount) {
 		// Verifica se a account existe no banco
 		Optional<AccountModel> accocuntModelOptional = accountRepository.findById(idAccount);
 		accocuntModelOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("Account not found."));
 		// Busca o saldo existente na account e armazena em uma variável
 		Double balance = accocuntModelOptional.get().getBalance();
-		TransactionModel transactionModelPersisit = new TransactionModel();
-		// Cria registro da transação para a operação deposito
-		transactionModelPersisit.setValue(balance);
-		// Salva no banco uma nova transação
-		transactionRepository.save(transactionModelPersisit);
-		return transactionModelPersisit;
+//		TransactionModel transactionModelPersisit = new TransactionModel();
+//		// Cria registro da transação para a operação deposito
+//		transactionModelPersisit.setValue(balance);
+//		// Salva no banco uma nova transação
+//		transactionRepository.save(transactionModelPersisit);
+		return balance;
 	}
 
 	// Realiza o saque de dinheiro na conta.

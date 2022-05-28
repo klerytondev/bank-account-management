@@ -42,8 +42,8 @@ public class TransactionController {
 	@ApiOperation(value = "Busca o saldo de uma account.")
 	@GetMapping("/saldo/{idAccount}")
 	public ResponseEntity<Object> balanceAccount(@ApiParam @PathVariable Long idAccount) {
-		TransactionModel transactionModel = transactionService.balanceAccount(idAccount);
-		return ResponseEntity.status(HttpStatus.CREATED).body("Saldo: " + transactionModel);
+		Double balance = transactionService.balanceAccount(idAccount);
+		return ResponseEntity.status(HttpStatus.CREATED).body("Saldo: R$ " + balance);
 	}
 
 	@ApiOperation(value = "Realiza o saque de dinheiro na conta.")
