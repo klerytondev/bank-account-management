@@ -3,40 +3,38 @@ package br.com.bankaccountmanagement.requestDto;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 import br.com.bankaccountmanagement.models.enums.AccountType;
 import io.swagger.annotations.ApiModelProperty;
 
-public class DepositRequestDto implements Serializable {
+public class WithdrawRequestDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(notes = "Id da pessoa que a conta pertence. ")
+	@ApiModelProperty(notes = "Id da account que vai ser realizado o saque. ")
 	// TODO ajustar messagem
 	@NotNull(message = "Preenchimento obrigatório")
-	private Long idAccoount;
+	private Long idAccount;
 
-	@ApiModelProperty(notes = "Id da pessoa que a conta pertence. ")
-	// TODO ajustar messagem
-	@NotNull(message = "Preenchimento obrigatório")
+	@ApiModelProperty(notes = "Tipo da conta. ")
 	private AccountType accountType;
 
-	@ApiModelProperty(notes = "Valor da transferência. ")
+	@ApiModelProperty(notes = "Valor que será sacado da account. ")
 	// TODO ajustar messagem
-	@Positive(message = "O valor deve ser maior que zero")
+	@PositiveOrZero(message = "O valor deve ser maior ou igual a zero")
 	// TODO ajustar messagem
 	@NotNull(message = "Preenchimento obrigatório")
 	private Double value;
 
 	public Long getIdAccount() {
-		return idAccoount;
+		return idAccount;
 	}
 
-	public void setIdAccount(Long idPeople) {
-		this.idAccoount = idPeople;
+	public void setIdAccount(Long idAccount) {
+		this.idAccount = idAccount;
 	}
-
+	
 	public AccountType getAccountType() {
 		return accountType;
 	}
@@ -52,5 +50,4 @@ public class DepositRequestDto implements Serializable {
 	public void setValue(Double value) {
 		this.value = value;
 	}
-
 }
