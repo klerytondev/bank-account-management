@@ -28,7 +28,7 @@ public class PeopleController {
 	PeopleService peopleService;
 
 	@ApiOperation(value = "Cria uma nova pessoa.")
-	@PostMapping("/add/people}")
+	@PostMapping("/add/people")
 	public ResponseEntity<Object> createPeople(@RequestBody @Valid PeoplerequestDto peoplerequestDto) {
 		PeopleModel peopleModel = peopleService.createPeople(peoplerequestDto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(peopleModel);

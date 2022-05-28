@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 //informa que esta classe é uma entidade
 @Entity
 @Table(name = "TB_PEOPLE")
@@ -38,6 +40,7 @@ public class PeopleModel implements Serializable {
 	private Set<AccountModel> accountModels;
 
 	@Column(nullable = false)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date birthDate;
 
 	public PeopleModel() {

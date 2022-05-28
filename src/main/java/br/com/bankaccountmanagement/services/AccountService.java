@@ -58,7 +58,6 @@ public class AccountService {
 	public AccountModel convertDtoToModel(AccountRequestDto accountRequestDto) {
 
 		AccountModel accountModel = new AccountModel();
-		accountModel.setBalance(accountRequestDto.getBalance());
 		accountModel.setWithdrawalLimit(accountRequestDto.getWithdrawalLimit());
 		accountModel.setAccountType(accountRequestDto.getAccountType());
 

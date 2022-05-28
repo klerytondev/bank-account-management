@@ -5,10 +5,12 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.bankaccountmanagement.models.AccountModel;
 
@@ -29,8 +31,8 @@ public class PeoplerequestDto {
 
 	private Set<AccountModel> accountModels;
 
-	@NotEmpty(message = "{campo.data.obrigatorio}")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@NotNull(message = "{campo.data.obrigatorio}")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private Date birthDate;
 
 	public PeoplerequestDto() {
