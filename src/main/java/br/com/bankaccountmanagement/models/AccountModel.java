@@ -49,7 +49,6 @@ public class AccountModel implements Serializable {
 	private LocalDateTime createdDate;
 
 	// Uma account pode ter várias transações @oneToMany
-	// TODO verificar porque não está realizando associação com transactions
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "account_id", foreignKey = @ForeignKey(name = "fk_transactions"))
 	private Set<TransactionModel> transactionModels;

@@ -12,30 +12,15 @@ public class DepositRequestDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-//	@ApiModelProperty(notes = "Id da pessoa que a conta pertence. ")
-//	// TODO ajustar messagem
-//	@NotNull(message = "Preenchimento obrigatório")
-//	private Long idAccoount;
-
 	@ApiModelProperty(notes = "Id da pessoa que a conta pertence. ")
-	// TODO ajustar messagem
-	@NotNull(message = "Preenchimento obrigatório")
+	@NotNull(message = "{campo.type.obrigatorio}")
 	private AccountType accountType;
 
 	@ApiModelProperty(notes = "Valor da transferência. ")
-	// TODO ajustar messagem
 	@Positive(message = "O valor deve ser maior que zero")
 	// TODO ajustar messagem
-	@NotNull(message = "Preenchimento obrigatório")
+	@NotNull(message = "{campo.valordeposito.obrigatorio}")
 	private Double value;
-
-//	public Long getIdAccount() {
-//		return idAccoount;
-//	}
-//
-//	public void setIdAccount(Long idPeople) {
-//		this.idAccoount = idPeople;
-//	}
 
 	public AccountType getAccountType() {
 		return accountType;

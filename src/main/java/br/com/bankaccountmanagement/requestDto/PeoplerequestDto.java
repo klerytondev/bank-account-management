@@ -26,7 +26,7 @@ public class PeoplerequestDto {
 	@Length(max = 50, message = "{campo.nome.caracteres}")
 	private String name;
 
-	@CPF(message = "{campo.accountcpf.nulo}")
+	@CPF(message = "{campo.pessoacpf.nulo}")
 	private String cpf;
 
 	private Set<AccountModel> accountModels;

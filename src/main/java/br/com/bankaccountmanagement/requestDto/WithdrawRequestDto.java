@@ -12,11 +12,6 @@ public class WithdrawRequestDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(notes = "Id da account que vai ser realizado o saque. ")
-	// TODO ajustar messagem
-	@NotNull(message = "Preenchimento obrigatório")
-	private Long idAccount;
-
 	@ApiModelProperty(notes = "Tipo da conta. ")
 	private AccountType accountType;
 
@@ -24,16 +19,8 @@ public class WithdrawRequestDto implements Serializable {
 	// TODO ajustar messagem
 	@PositiveOrZero(message = "O valor deve ser maior ou igual a zero")
 	// TODO ajustar messagem
-	@NotNull(message = "Preenchimento obrigatório")
+	@NotNull(message = "{campo.valorsaque.obrigatorio}")
 	private Double value;
-
-	public Long getIdAccount() {
-		return idAccount;
-	}
-
-	public void setIdAccount(Long idAccount) {
-		this.idAccount = idAccount;
-	}
 	
 	public AccountType getAccountType() {
 		return accountType;

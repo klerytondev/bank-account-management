@@ -13,7 +13,7 @@ public class TransactionRequestDto {
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
 
-	@NotEmpty(message = "{campo.valor.obrigatorio}")
+	@NotEmpty(message = "{campo.valorsaque.obrigatorio}")
 	private Double value;
 
 	public TransactionRequestDto() {

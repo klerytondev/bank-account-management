@@ -55,7 +55,7 @@ public class TransactionController {
 	}
 
 	@ApiOperation(value = "Retorna todas as transações de auma account")
-	@GetMapping("/transactions/{idAccount}")
+	@GetMapping("/transacoes/{idAccount}")
 	public ResponseEntity<Object> getAllTransactions(@ApiParam @PathVariable Long idAccount) {
 		return ResponseEntity.status(HttpStatus.OK).body(transactionService.getAllTransactions(idAccount));
 
