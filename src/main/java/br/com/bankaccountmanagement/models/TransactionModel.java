@@ -19,7 +19,7 @@ public class TransactionModel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idTransacao;
+	private Long idTransaction;
 
 	@Column(name = "account_id")
 	private Long idAccount;
@@ -35,10 +35,15 @@ public class TransactionModel implements Serializable {
 	}
 
 	public TransactionModel(Long idTransacao, Double value) {
-		super();
-		this.idTransacao = idTransacao;
+		this.idTransaction = idTransacao;
 		this.value = value;
 
+	}
+	public TransactionModel(Long idTransaction, Long idAccount, Double value) {
+		this.idTransaction = idTransaction;
+		this.value = value;
+		this.idAccount = idAccount;
+		
 	}
 
 	public Double getValue() {
@@ -54,7 +59,7 @@ public class TransactionModel implements Serializable {
 	}
 
 	public Long getIdTransacao() {
-		return idTransacao;
+		return idTransaction;
 	}
 
 	public Long getIdAccount() {
@@ -67,7 +72,7 @@ public class TransactionModel implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idTransacao, transactionDate, value);
+		return Objects.hash(idTransaction, transactionDate, value);
 	}
 
 	@Override
@@ -79,13 +84,13 @@ public class TransactionModel implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		TransactionModel other = (TransactionModel) obj;
-		return Objects.equals(idTransacao, other.idTransacao) && Objects.equals(transactionDate, other.transactionDate)
+		return Objects.equals(idTransaction, other.idTransaction) && Objects.equals(transactionDate, other.transactionDate)
 				&& Objects.equals(value, other.value);
 	}
 
 	@Override
 	public String toString() {
-		return "TransactionModel [idTransacao=" + idTransacao + ", value=" + value + ", transactionDate="
+		return "TransactionModel [idTransacao=" + idTransaction + ", value=" + value + ", transactionDate="
 				+ transactionDate + "]";
 	}
 

@@ -60,7 +60,6 @@ public class AccountModel implements Serializable {
 
 	public AccountModel(Double balance, Double withdrawalLimit, ActiveFlag activeFlag, AccountType accountType,
 			LocalDateTime createdDate, Set<TransactionModel> transactionModels) {
-		super();
 		this.balance = balance;
 		this.withdrawalLimit = withdrawalLimit;
 		this.activeFlag = activeFlag;

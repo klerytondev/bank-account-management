@@ -9,7 +9,6 @@ import br.com.bankaccountmanagement.models.enums.AccountType;
 import io.swagger.annotations.ApiModelProperty;
 
 public class DepositRequestDto implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	@ApiModelProperty(notes = "Id da pessoa que a conta pertence. ")
