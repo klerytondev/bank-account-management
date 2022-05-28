@@ -16,12 +16,11 @@ public class WithdrawRequestDto implements Serializable {
 	private AccountType accountType;
 
 	@ApiModelProperty(notes = "Valor que será sacado da account. ")
-	// TODO ajustar messagem
 	@PositiveOrZero(message = "O valor deve ser maior ou igual a zero")
-	// TODO ajustar messagem
 	@NotNull(message = "{campo.valorsaque.obrigatorio}")
 	private Double value;
 	
+	@ApiModelProperty(notes = "Tipo da conta. CORRENTE ou POUPANCA ")
 	public AccountType getAccountType() {
 		return accountType;
 	}

@@ -13,6 +13,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.bankaccountmanagement.models.AccountModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /*
  * Esta classe Transferi e manipula atributos recebidos por parametro da account via controller
@@ -22,10 +23,12 @@ public class PeoplerequestDto {
 
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
+	@ApiModelProperty(notes = "Nome do cliente. ")
 	@NotEmpty(message = "{campo.nome.obrigatorio}")
 	@Length(max = 50, message = "{campo.nome.caracteres}")
 	private String name;
 
+	@ApiModelProperty(notes = "CPF do cliente. ")
 	@CPF(message = "{campo.pessoacpf.nulo}")
 	private String cpf;
 

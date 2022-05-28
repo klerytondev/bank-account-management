@@ -16,9 +16,8 @@ public class DepositRequestDto implements Serializable {
 	@NotNull(message = "{campo.type.obrigatorio}")
 	private AccountType accountType;
 
-	@ApiModelProperty(notes = "Valor da transferência. ")
+	@ApiModelProperty(notes = "Valor do deposito. ")
 	@Positive(message = "O valor deve ser maior que zero")
-	// TODO ajustar messagem
 	@NotNull(message = "{campo.valordeposito.obrigatorio}")
 	private Double value;
 

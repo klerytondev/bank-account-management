@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import javax.validation.constraints.NotEmpty;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /*
  * Esta classe Transferi e manipula atributos recebidos por parametro da account via controller
  * */
@@ -13,6 +15,7 @@ public class TransactionRequestDto {
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
 
+	@ApiModelProperty(notes = "Valor da transação. ")
 	@NotEmpty(message = "{campo.valorsaque.obrigatorio}")
 	private Double value;
 

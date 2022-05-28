@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import br.com.bankaccountmanagement.models.enums.AccountType;
 import br.com.bankaccountmanagement.models.enums.ActiveFlag;
+import io.swagger.annotations.ApiModelProperty;
 
 /*
  * Esta classe Transferi e manipula atributos recebidos por parametro da account via controller
@@ -16,11 +17,14 @@ public class AccountRequestDto {
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
 
+	@ApiModelProperty(notes = "Limite de saque da conta. ")
 	@NotNull(message = "{campo.limite.obrigatorio}")
 	private Double withdrawalLimit;
 
+	@ApiModelProperty(notes = "Bandeira da conta. MASTERCARD ou VISA")
 	private ActiveFlag activeFlag;
 
+	@ApiModelProperty(notes = "Tipo da conta. CORRENTE ou POUPANCA ")
 	private AccountType accountType;
 
 	public AccountRequestDto() {
