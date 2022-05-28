@@ -26,7 +26,7 @@ public class SwaggerConfig {
 	    public Docket api() {
 	        return new Docket(DocumentationType.SWAGGER_2)
 	                .select()
-	                .apis(RequestHandlerSelectors.basePackage("br.com.kleryton.bankingsystem"))
+	                .apis(RequestHandlerSelectors.basePackage("br.com.bankaccountmanagement"))
 	                .paths(PathSelectors.any())
 	                .build()
 	                .apiInfo(showMetadata());
