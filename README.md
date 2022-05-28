@@ -1,4 +1,4 @@
-# Banking System
+# Bank Account Management
 API Restful genérica que realiza o gerenciamento de contas bancárias.
 
 # Funcionalidades
@@ -67,7 +67,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialec
 
 ### Status do Projeto
 <h4 align="left"> 
-	🚧  React Select 🚀 ready  🚧
+	🚧  React Select 🚀 in production  🚧
 </h4>
 
 ### Autor
