@@ -29,7 +29,7 @@ public class AccountController {
 	AccountService accountService;
 
 	@ApiOperation(value = "Cadastra uma nova conta no sistema e pessoa associada a ela.")
-	@PostMapping("/add/{idPeople}")
+	@PostMapping("/add/account/{idPeople}")
 	public ResponseEntity<Object> saveAccount(@RequestBody @Valid AccountRequestDto accountRequestDto,
 			@PathVariable Long idPeople) {
 		PeopleModel peopleModel = accountService.createAccount(accountRequestDto, idPeople);

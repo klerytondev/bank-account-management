@@ -14,8 +14,6 @@ public class AccountRequestDto {
 
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
-	@NotEmpty(message = "{campo.balance.obrigatorio}")
-	private Double balance;
 
 	@NotEmpty(message = "{campo.limite.obrigatorio}")
 	private Double withdrawalLimit;
@@ -27,21 +25,11 @@ public class AccountRequestDto {
 	public AccountRequestDto() {
 	}
 
-	public AccountRequestDto(@NotEmpty(message = "{campo.balance.obrigatorio}") Double balance,
-			@NotEmpty(message = "{campo.limite.obrigatorio}") Double withdrawalLimit, ActiveFlag activeFlag,
-			AccountType accountType) {
-		this.balance = balance;
+	public AccountRequestDto(@NotEmpty(message = "{campo.limite.obrigatorio}") Double withdrawalLimit,
+			ActiveFlag activeFlag, AccountType accountType) {
 		this.withdrawalLimit = withdrawalLimit;
 		this.activeFlag = activeFlag;
 		this.accountType = accountType;
-	}
-
-	public Double getBalance() {
-		return balance;
-	}
-
-	public void setBalance(Double balance) {
-		this.balance = balance;
 	}
 
 	public Double getWithdrawalLimit() {
@@ -70,7 +58,7 @@ public class AccountRequestDto {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(accountType, activeFlag, balance, withdrawalLimit);
+		return Objects.hash(accountType, activeFlag, withdrawalLimit);
 	}
 
 	@Override
@@ -83,7 +71,7 @@ public class AccountRequestDto {
 			return false;
 		AccountRequestDto other = (AccountRequestDto) obj;
 		return accountType == other.accountType && activeFlag == other.activeFlag
-				&& Objects.equals(balance, other.balance) && Objects.equals(withdrawalLimit, other.withdrawalLimit);
+				&& Objects.equals(withdrawalLimit, other.withdrawalLimit);
 	}
 
 }
