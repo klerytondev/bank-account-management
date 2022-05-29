@@ -2,7 +2,9 @@ package br.com.bankaccountmanagement.models.enums;
 
 import javax.validation.constraints.Pattern;
 
-/*
+/**
+ * @author: Kleryton de souza
+ * 
  * Enum utilizado para posssiveis entradas de tipo de conta
  * */
 

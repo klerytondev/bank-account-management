@@ -11,6 +11,9 @@ import br.com.bankaccountmanagement.repositories.PeopleRepository;
 import br.com.bankaccountmanagement.requestDto.PeoplerequestDto;
 import br.com.bankaccountmanagement.services.exceptions.ConflictDeDadosException;
 
+/**
+ * @author: Kleryton de souza
+ */
 @Service
 public class PeopleService {
 

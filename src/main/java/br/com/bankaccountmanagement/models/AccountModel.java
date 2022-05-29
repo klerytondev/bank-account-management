@@ -21,6 +21,10 @@ import javax.persistence.Table;
 import br.com.bankaccountmanagement.models.enums.AccountType;
 import br.com.bankaccountmanagement.models.enums.ActiveFlag;
 
+/**
+ * @author: Kleryton de souza
+ */
+
 //informa que esta classe é uma entidade
 @Entity
 @Table(name = "TB_ACCOUNT")

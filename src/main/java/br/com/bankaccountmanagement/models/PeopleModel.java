@@ -18,6 +18,10 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * @author: Kleryton de souza
+ */
+
 //informa que esta classe é uma entidade
 @Entity
 @Table(name = "TB_PEOPLE")

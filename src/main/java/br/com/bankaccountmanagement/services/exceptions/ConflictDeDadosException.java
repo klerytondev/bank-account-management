@@ -1,6 +1,8 @@
 package br.com.bankaccountmanagement.services.exceptions;
 
-/*
+/**
+ * @author: Kleryton de souza
+ * 
  * Trata Status 409, caso a solicitação não possa ser concluída devido a um 
  * conflito com o estado atual do recurso de destino
  */

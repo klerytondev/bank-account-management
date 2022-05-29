@@ -1,9 +1,10 @@
 package br.com.bankaccountmanagement.services.exceptions;
 
 /*
+ * @author: Kleryton de souza
+ * 
  *  Trata Status 404, caso o servidor não encontre uma representação atual do recurso solicitado
  *  
- * @author: Kleryton de souza
  */
 
 public class ObjetoNaoEncontradoException extends RuntimeException {

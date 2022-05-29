@@ -6,8 +6,10 @@ import javax.validation.constraints.NotEmpty;
 
 import io.swagger.annotations.ApiModelProperty;
 
-/*
- * Esta classe Transferi e manipula atributos recebidos por parametro da account via controller
+/**
+ * @author: Kleryton de souza
+ * 
+ * Este DTO recebe os parametros de TransactionModel passados via Json para criar uma nova transação
  * */
 
 public class TransactionRequestDto {

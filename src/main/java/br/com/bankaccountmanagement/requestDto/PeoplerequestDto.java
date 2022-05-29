@@ -15,10 +15,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import br.com.bankaccountmanagement.models.AccountModel;
 import io.swagger.annotations.ApiModelProperty;
 
-/*
- * Esta classe Transferi e manipula atributos recebidos por parametro da account via controller
+/**
+ * @author: Kleryton de souza
+ * 
+ * Este DTO recebe os parametros de PeopleModel passados via Json para criar uma nova pessoa
  * */
-
 public class PeoplerequestDto {
 
 	// Beans Validation para validação de entrada dos objetos

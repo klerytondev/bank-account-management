@@ -8,6 +8,11 @@ import javax.validation.constraints.PositiveOrZero;
 import br.com.bankaccountmanagement.models.enums.AccountType;
 import io.swagger.annotations.ApiModelProperty;
 
+/**
+ * @author: Kleryton de souza
+ * 
+ * Este DTO recebe os parametros passados via Json para realizar um saque de account
+ * */
 public class WithdrawRequestDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;

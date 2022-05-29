@@ -1,6 +1,8 @@
 package br.com.bankaccountmanagement.services.exceptions;
 
-/*
+/**
+ * @author: Kleryton de souza
+ * 
  *  Trata Status 400, caso algum atributo não seja passado no corpo
  */
 public class IntegridadeDeDadosException extends RuntimeException {

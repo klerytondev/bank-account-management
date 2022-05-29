@@ -8,6 +8,11 @@ import javax.validation.constraints.Positive;
 import br.com.bankaccountmanagement.models.enums.AccountType;
 import io.swagger.annotations.ApiModelProperty;
 
+/**
+ * @author: Kleryton de souza
+ * 
+ * Este DTO recebe os parametros passados via Json para realizar um deposito em uma account
+ * */
 public class DepositRequestDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 

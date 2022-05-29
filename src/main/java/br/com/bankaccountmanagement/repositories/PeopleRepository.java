@@ -4,7 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.bankaccountmanagement.models.PeopleModel;
 
-/*
+/**
+ * @author: Kleryton de souza
+ * 
  * Esta classe cria um beans para persisti no banco
  * 
  * */

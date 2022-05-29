@@ -8,14 +8,15 @@ import javax.validation.constraints.NotNull;
 import br.com.bankaccountmanagement.models.enums.AccountType;
 import io.swagger.annotations.ApiModelProperty;
 
-/*
- * Esta classe Transferi e manipula atributos recebidos por parametro da account via controller
+/**
+ * @author: Kleryton de souza
+ * 
+ * Este DTO recebe os parametros de AccountModel passados via Json para criar uma nova account
  * */
 public class AccountRequestDto {
 
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
-
 	@ApiModelProperty(notes = "Limite de saque da conta. ")
 	@NotNull(message = "{campo.limite.obrigatorio}")
 	private Double withdrawalLimit;

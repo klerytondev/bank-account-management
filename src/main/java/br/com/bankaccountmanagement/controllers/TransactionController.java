@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bankaccountmanagement.models.TransactionModel;
 import br.com.bankaccountmanagement.requestDto.DepositRequestDto;
+import br.com.bankaccountmanagement.requestDto.ExtractByPeriodRequestDto;
 import br.com.bankaccountmanagement.requestDto.WithdrawRequestDto;
 import br.com.bankaccountmanagement.services.TransactionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-
 
 /**
  * @author: Kleryton de souza
@@ -62,6 +62,15 @@ public class TransactionController {
 	@GetMapping("/transacoes/{idAccount}")
 	public ResponseEntity<Object> getAllTransactions(@ApiParam @PathVariable Long idAccount) {
 		return ResponseEntity.status(HttpStatus.OK).body(transactionService.getAllTransactions(idAccount));
+
+	}
+
+	@ApiOperation(value = "Retorna as transações de auma account por periodo")
+	@GetMapping("/transacoes/periodo/{idAccount}")
+	public ResponseEntity<Object> getAllPeriodTransactions(
+			@Valid @RequestBody ExtractByPeriodRequestDto extractByPeriodRequestDto,
+			@ApiParam @PathVariable Long idAccount) {
+		return ResponseEntity.status(HttpStatus.OK).body(transactionService.getAllPeriodTransactions(idAccount));
 
 	}
 

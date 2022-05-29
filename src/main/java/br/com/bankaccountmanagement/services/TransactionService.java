@@ -15,6 +15,7 @@ import br.com.bankaccountmanagement.models.enums.ActiveFlag;
 import br.com.bankaccountmanagement.repositories.AccountRepository;
 import br.com.bankaccountmanagement.repositories.TransactionRepository;
 import br.com.bankaccountmanagement.requestDto.DepositRequestDto;
+import br.com.bankaccountmanagement.requestDto.ExtractByPeriodRequestDto;
 import br.com.bankaccountmanagement.requestDto.WithdrawRequestDto;
 import br.com.bankaccountmanagement.services.exceptions.IntegridadeDeDadosException;
 import br.com.bankaccountmanagement.services.exceptions.ObjetoNaoEncontradoException;
@@ -117,6 +118,29 @@ public class TransactionService {
 		// Salva transactions existentes no banco de dados em uma lista de transactions
 		List<TransactionModel> transactionModelsList = new ArrayList<>();
 		for (TransactionModel transactionModel : accocuntModelOptional.get().getTransactionModels()) {
+			transactionModelsList.add(transactionModel);
+		}
+		return transactionModelsList;
+	}
+
+	// Retorna todas as transações de uma account por periodo
+	@Transactional
+	public List<TransactionModel> getAllPeriodTransactions(ExtractByPeriodRequestDto extractByPeriodRequestDto,
+			Long idAccount) {
+
+		// Verifica se a account existe no banco
+		Optional<AccountModel> accocuntModelOptional = accountRepository.findById(idAccount);
+		accocuntModelOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("Account not found."));
+
+		// Verifica se existe transações salvas no banco de acordo com o is da account
+		// passado, caso contrario retorna exception.
+		if (accocuntModelOptional.get().getTransactionModels().isEmpty()) {
+			throw new ObjetoNaoEncontradoException("transactions not found!");
+		}
+		// Salva transactions existentes no banco de dados em uma lista de transactions
+		List<TransactionModel> transactionModelsList = new ArrayList<>();
+		for (TransactionModel transactionModel : accocuntModelOptional.get().getTransactionModels()) {
+			if(extractByPeriodRequestDto)
 			transactionModelsList.add(transactionModel);
 		}
 		return transactionModelsList;

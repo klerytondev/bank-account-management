@@ -6,6 +6,12 @@ import javax.validation.constraints.NotNull;
 
 import io.swagger.annotations.ApiModelProperty;
 
+/**
+ * @author: Kleryton de souza
+ * 
+ * Este DTO recebe os parametros de AccountModel passados via Json para alterar o status da account
+ * 
+ */
 public class AccountActiveFlagRequestDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 

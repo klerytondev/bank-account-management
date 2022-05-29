@@ -11,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author: Kleryton de souza
+ */
+
 //informa que esta classe é uma entidade
 @Entity
 @Table(name = "TB_TRANSACTION")
