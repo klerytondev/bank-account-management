@@ -7,7 +7,7 @@ API Restful genérica que realiza o gerenciamento de contas bancárias.
 3. Gerenciamento de transactions (CRUD completo)
 
 # Documentação
-*  A documentação da API foi gerada com Swagger e está disponível em ``` http://bankingsystem-env.eba-8whmar3w.us-east-1.elasticbeanstalk.com/swagger-ui.html```
+*  A documentação da API foi gerada com Swagger e está disponível em ```http://bankmanagement-env.eba-tizakmp5.us-east-1.elasticbeanstalk.com/swagger-ui.html```
 
 # Pré-requisitos(manual de execução)
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
@@ -63,7 +63,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialec
 - [X] Validações
 - [x] Documentação Swagger
 - [x] Tratamento de exceções
-- [ ] Deploy project on AWS
+- [X] Deploy do projeto na AWS
 
 ### Status do Projeto
 <h4 align="left"> 
