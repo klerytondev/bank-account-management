@@ -54,7 +54,7 @@ public class AccountModel implements Serializable {
 	private Set<TransactionModel> transactionModels;
 
 	public AccountModel() {
-		// Salva a data da criação da conta.
+		this.activeFlag = ActiveFlag.ACTIVE;
 		this.createdDate = LocalDateTime.now();
 	}
 

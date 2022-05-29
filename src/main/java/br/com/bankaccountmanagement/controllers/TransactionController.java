@@ -21,6 +21,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
+
+/**
+ * @author: Kleryton de souza
+ */
 @RestController
 @RequestMapping(value = "/v1/bankAccountManagement")
 @Api(value = "Bank Account Management - API Restfull")

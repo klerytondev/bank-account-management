@@ -13,7 +13,6 @@ public enum AccountType {
 	/*
 	 * @regex validar os possiveis tipos de bandeiras. Só são permitidas as bandeiras
 	 * COREENTE("corrente"), POUPANCA("poupanca")
-	 * 
 	 */
 	@Pattern(regexp = "CORRENTE|POUPANCA")
 	private String accountType;

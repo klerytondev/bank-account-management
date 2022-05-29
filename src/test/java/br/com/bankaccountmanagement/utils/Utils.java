@@ -34,7 +34,7 @@ public class Utils {
 	public static AccountModel createAccountModel(Double balance, Double withdrawLimit) {
 		AccountModel accountModel = new AccountModel();
 		accountModel.setAccountType(AccountType.CORRENTE);
-		accountModel.setActiveFlag(ActiveFlag.MASTERCARD);
+//		accountModel.setActiveFlag(ActiveFlag.MASTERCARD);
 		accountModel.setBalance(balance);
 		accountModel.setWithdrawalLimit(withdrawLimit);
 		return accountModel;

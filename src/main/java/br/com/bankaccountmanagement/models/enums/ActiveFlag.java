@@ -2,31 +2,31 @@ package br.com.bankaccountmanagement.models.enums;
 
 import javax.validation.constraints.Pattern;
 
-/*
- * Enum utilizado para posssiveis entradas de tipo de bandeira para conta
+/**
+ * @author: Kleryton de souza
+ *
+ * Enum utilizado para posssiveis entradas de status da conta
  * */
-
 public enum ActiveFlag {
 
-	MASTERCARD("mastercard"), VISA("visa");
+	BLOCK("block"), ACTIVE("active");
 
 	/*
-	 * @regex validar os possiveis tipos de bandeiras. Só são permitidas as bandeiras
-	 * MASTERCARD("mastercard"), VISA("visa")
-	 * 
+	 * @regex validar os possiveis tipos de bandeiras. Só são permitidas as
+	 * bandeiras BLOCK("block"), ACTIVE("active")
 	 */
-	@Pattern(regexp = "MASTERCARD|VISA")
-	private String ativeFlag;
+	@Pattern(regexp = "BLOCK|ACTIVE")
+	private String activeFlag;
 
-	private ActiveFlag(String ativeFlag) {
-		this.ativeFlag = ativeFlag;
+	private ActiveFlag(@Pattern(regexp = "BLOCK|ACTIVE") String activeFlag) {
+		this.activeFlag = activeFlag;
 	}
 
-	public String getativeFlag() {
-		return ativeFlag;
+	public String getActiveFlag() {
+		return activeFlag;
 	}
 
-	public void setativeFlag(String ativeFlag) {
-		this.ativeFlag = ativeFlag;
+	public void setActiveFlag(String activeFlag) {
+		this.activeFlag = activeFlag;
 	}
 }

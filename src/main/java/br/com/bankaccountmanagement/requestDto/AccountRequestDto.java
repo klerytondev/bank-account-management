@@ -6,7 +6,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import br.com.bankaccountmanagement.models.enums.AccountType;
-import br.com.bankaccountmanagement.models.enums.ActiveFlag;
 import io.swagger.annotations.ApiModelProperty;
 
 /*
@@ -21,19 +20,14 @@ public class AccountRequestDto {
 	@NotNull(message = "{campo.limite.obrigatorio}")
 	private Double withdrawalLimit;
 
-	@ApiModelProperty(notes = "Bandeira da conta. MASTERCARD ou VISA")
-	private ActiveFlag activeFlag;
-
 	@ApiModelProperty(notes = "Tipo da conta. CORRENTE ou POUPANCA ")
 	private AccountType accountType;
 
 	public AccountRequestDto() {
 	}
 
-	public AccountRequestDto(@NotEmpty(message = "{campo.limite.obrigatorio}") Double withdrawalLimit,
-			ActiveFlag activeFlag, AccountType accountType) {
+	public AccountRequestDto(@NotEmpty(message = "{campo.limite.obrigatorio}") Double withdrawalLimit, AccountType accountType) {
 		this.withdrawalLimit = withdrawalLimit;
-		this.activeFlag = activeFlag;
 		this.accountType = accountType;
 	}
 
@@ -44,15 +38,6 @@ public class AccountRequestDto {
 	public void setWithdrawalLimit(Double withdrawalLimit) {
 		this.withdrawalLimit = withdrawalLimit;
 	}
-
-	public ActiveFlag getActiveFlag() {
-		return activeFlag;
-	}
-
-	public void setActiveFlag(ActiveFlag activeFlag) {
-		this.activeFlag = activeFlag;
-	}
-
 	public AccountType getAccountType() {
 		return accountType;
 	}
@@ -63,7 +48,7 @@ public class AccountRequestDto {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(accountType, activeFlag, withdrawalLimit);
+		return Objects.hash(accountType, withdrawalLimit);
 	}
 
 	@Override
@@ -75,8 +60,7 @@ public class AccountRequestDto {
 		if (getClass() != obj.getClass())
 			return false;
 		AccountRequestDto other = (AccountRequestDto) obj;
-		return accountType == other.accountType && activeFlag == other.activeFlag
-				&& Objects.equals(withdrawalLimit, other.withdrawalLimit);
+		return accountType == other.accountType && Objects.equals(withdrawalLimit, other.withdrawalLimit);
 	}
 
 }
