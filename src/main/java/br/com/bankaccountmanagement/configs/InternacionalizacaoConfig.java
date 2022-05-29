@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+/**
+ * @author: Kleryton de souza
+ */
+
 /*
 * Esta classe é responsável por permitir que o arquivo 
 * message.properties possa ser utilizado. Ela configura o nome do arquivo

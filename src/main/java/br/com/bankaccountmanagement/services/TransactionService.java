@@ -16,7 +16,7 @@ import br.com.bankaccountmanagement.repositories.AccountRepository;
 import br.com.bankaccountmanagement.repositories.TransactionRepository;
 import br.com.bankaccountmanagement.requestDto.DepositRequestDto;
 import br.com.bankaccountmanagement.requestDto.WithdrawRequestDto;
-import br.com.bankaccountmanagement.services.exceptions.NegocioException;
+import br.com.bankaccountmanagement.services.exceptions.IntegridadeDeDadosException;
 import br.com.bankaccountmanagement.services.exceptions.ObjetoNaoEncontradoException;
 
 /**
@@ -42,7 +42,7 @@ public class TransactionService {
 		// Verifica se a account está bloqueada no banco. Caso afirmativo lança uma
 		// exception.
 		if (accocuntModelOptional.get().getActiveFlag().equals(ActiveFlag.BLOCK)) {
-			throw new NegocioException("The account is blocked, it is not possible to make a deposit.");
+			throw new IntegridadeDeDadosException("The account is blocked, it is not possible to make a deposit.");
 		}
 		// Incrementa valor depositado no saldo existente
 		AccountModel accountModel = accocuntModelOptional.get();
@@ -79,7 +79,7 @@ public class TransactionService {
 		// Verifica se a account está bloqueada no banco. Caso afirmativo lança uma
 		// exception.
 		if (accocuntModelOptional.get().getActiveFlag().equals(ActiveFlag.BLOCK)) {
-			throw new NegocioException("The account is blocked, it is not possible to make a withdrawal.");
+			throw new IntegridadeDeDadosException("The account is blocked, it is not possible to make a withdrawal.");
 		}
 
 		// Verifica se a acoount possui saldo suficiente para o saque
@@ -88,7 +88,7 @@ public class TransactionService {
 					.setBalance(accocuntModelOptional.get().getBalance() - withdrawRequestDto.getValue());
 		} else {
 			// Exceção para caso não haja saldo suficiente para saque na account
-			throw new NegocioException("Insufficient balance for withdrawal.");
+			throw new IntegridadeDeDadosException("Insufficient balance for withdrawal.");
 		}
 		TransactionModel transactionModelPersisit = new TransactionModel();
 

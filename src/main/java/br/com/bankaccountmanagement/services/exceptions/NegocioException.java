@@ -3,6 +3,9 @@
  */
 package br.com.bankaccountmanagement.services.exceptions;
 
+/**
+ * @author: Kleryton de souza
+ */
 public class NegocioException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
