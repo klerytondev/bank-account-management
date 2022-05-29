@@ -1,7 +1,6 @@
 package br.com.bankaccountmanagement.requestDto;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -16,32 +15,34 @@ public class ExtractByPeriodRequestDto implements Serializable {
 	
 	@ApiModelProperty(notes = "Data inicial para extrato por periodo. ")
 	@NotEmpty(message = "{campo.initialDate.obrigatorio}")
-	private LocalDateTime initialDate;
+//	@Pattern(regexp = "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$", message = "Formato de data incorreto")
+	private String initialDate;
 	
 	@ApiModelProperty(notes = "Data final para extrato por periodo. ")
 	@NotEmpty(message = "{campo.finalDate.obrigatorio}")
-	private LocalDateTime finalDate;
+//	@Pattern(regexp = "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$", message = "Formato de data incorreto")
+	private String finalDate;
 
-	public ExtractByPeriodRequestDto(@NotEmpty(message = "{campo.initialDate.obrigatorio}") LocalDateTime initialDate,
-			@NotEmpty(message = "{campo.finalDate.obrigatorio}") LocalDateTime finalDate) {
+	public ExtractByPeriodRequestDto(@NotEmpty(message = "{campo.initialDate.obrigatorio}") String initialDate,
+			@NotEmpty(message = "{campo.finalDate.obrigatorio}") String finalDate) {
 		super();
 		this.initialDate = initialDate;
 		this.finalDate = finalDate;
 	}
 
-	public LocalDateTime getInitialDate() {
+	public String getInitialDate() {
 		return initialDate;
 	}
 
-	public void setInitialDate(LocalDateTime initialDate) {
+	public void setInitialDate(String initialDate) {
 		this.initialDate = initialDate;
 	}
 
-	public LocalDateTime getFinalDate() {
+	public String getFinalDate() {
 		return finalDate;
 	}
 
-	public void setFinalDate(LocalDateTime finalDate) {
+	public void setFinalDate(String finalDate) {
 		this.finalDate = finalDate;
 	}
 	

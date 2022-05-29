@@ -10,6 +10,7 @@ import br.com.bankaccountmanagement.models.PeopleModel;
 import br.com.bankaccountmanagement.repositories.PeopleRepository;
 import br.com.bankaccountmanagement.requestDto.PeoplerequestDto;
 import br.com.bankaccountmanagement.services.exceptions.ConflictDeDadosException;
+import br.com.bankaccountmanagement.utils.DateUtils;
 
 /**
  * @author: Kleryton de souza
@@ -46,7 +47,7 @@ public class PeopleService {
 		PeopleModel peopleModel = new PeopleModel();
 		peopleModel.setName(peoplerequestDto.getName());
 		peopleModel.setCpf(peoplerequestDto.getCpf());
-		peopleModel.setBirthDate(peoplerequestDto.getBirthDate());
+		peopleModel.setBirthDate(DateUtils.convertStringToLocalDate(peoplerequestDto.getBirthDate()));
 		return peopleModel;
 	}
 

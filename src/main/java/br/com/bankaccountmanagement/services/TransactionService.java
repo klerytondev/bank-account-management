@@ -19,6 +19,7 @@ import br.com.bankaccountmanagement.requestDto.ExtractByPeriodRequestDto;
 import br.com.bankaccountmanagement.requestDto.WithdrawRequestDto;
 import br.com.bankaccountmanagement.services.exceptions.IntegridadeDeDadosException;
 import br.com.bankaccountmanagement.services.exceptions.ObjetoNaoEncontradoException;
+import br.com.bankaccountmanagement.utils.DateUtils;
 
 /**
  * @author: Kleryton de souza
@@ -82,11 +83,17 @@ public class TransactionService {
 		if (accocuntModelOptional.get().getActiveFlag().equals(ActiveFlag.BLOCK)) {
 			throw new IntegridadeDeDadosException("The account is blocked, it is not possible to make a withdrawal.");
 		}
-
+		//Verifico se ha limite suficiente para saque
+		if (withdrawRequestDto.getValue() > accocuntModelOptional.get().getWithdrawalLimit()) {
+			throw new IntegridadeDeDadosException("Insufficient limit for withdrawal.");
+		}
 		// Verifica se a acoount possui saldo suficiente para o saque
-		if (accocuntModelOptional.get().getBalance() >= withdrawRequestDto.getValue()) {
+		if (withdrawRequestDto.getValue() <= accocuntModelOptional.get().getBalance()) {
 			accocuntModelOptional.get()
 					.setBalance(accocuntModelOptional.get().getBalance() - withdrawRequestDto.getValue());
+			//Atualizo o limite
+			accocuntModelOptional.get().setWithdrawalLimit(
+					accocuntModelOptional.get().getWithdrawalLimit() - withdrawRequestDto.getValue());
 		} else {
 			// Exceção para caso não haja saldo suficiente para saque na account
 			throw new IntegridadeDeDadosException("Insufficient balance for withdrawal.");
@@ -141,12 +148,13 @@ public class TransactionService {
 		// de acordo com o periodo passado
 		List<TransactionModel> transactionModelsList = new ArrayList<>();
 		for (TransactionModel transactionModel : accocuntModelOptional.get().getTransactionModels()) {
-			if ((transactionModel.getTransactionDate().isAfter(extractByPeriodRequestDto.getInitialDate())
-					&& transactionModel.getTransactionDate().isBefore(extractByPeriodRequestDto.getFinalDate()))) {
+			if ((transactionModel.getTransactionDate().isAfter(
+					DateUtils.convertStringToLocalDate(extractByPeriodRequestDto.getInitialDate()).minusDays(1))
+					&& transactionModel.getTransactionDate().isBefore(DateUtils
+							.convertStringToLocalDate(extractByPeriodRequestDto.getFinalDate()).plusDays(1)))) {
 				transactionModelsList.add(transactionModel);
 			}
 		}
 		return transactionModelsList;
 	}
-
 }

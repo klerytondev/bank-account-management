@@ -1,7 +1,7 @@
 package br.com.bankaccountmanagement.models;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
@@ -50,7 +50,7 @@ public class AccountModel implements Serializable {
 	private AccountType accountType;
 
 	@Column
-	private LocalDateTime createdDate;
+	private LocalDate createdDate;
 
 	// Uma account pode ter várias transações @oneToMany
 	@OneToMany(cascade = CascadeType.ALL)
@@ -59,11 +59,11 @@ public class AccountModel implements Serializable {
 
 	public AccountModel() {
 		this.activeFlag = ActiveFlag.ACTIVE;
-		this.createdDate = LocalDateTime.now();
+		this.createdDate = LocalDate.now();
 	}
 
 	public AccountModel(Double balance, Double withdrawalLimit, ActiveFlag activeFlag, AccountType accountType,
-			LocalDateTime createdDate, Set<TransactionModel> transactionModels) {
+			LocalDate createdDate, Set<TransactionModel> transactionModels) {
 		this.balance = balance;
 		this.withdrawalLimit = withdrawalLimit;
 		this.activeFlag = activeFlag;
@@ -103,7 +103,7 @@ public class AccountModel implements Serializable {
 		this.accountType = accountType;
 	}
 
-	public LocalDateTime getCreatedDate() {
+	public LocalDate getCreatedDate() {
 		return createdDate;
 	}
 
@@ -117,6 +117,9 @@ public class AccountModel implements Serializable {
 
 	public Long getId() {
 		return idAccount;
+	}
+	public void setIdAccount(Long idAccount) {
+		this.idAccount = idAccount;
 	}
 
 	@Override

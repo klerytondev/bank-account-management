@@ -1,7 +1,7 @@
 package br.com.bankaccountmanagement.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
@@ -45,12 +45,12 @@ public class PeopleModel implements Serializable {
 
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date birthDate;
+	private LocalDate birthDate;
 
 	public PeopleModel() {
 	}
 
-	public PeopleModel(Long idPeople, String name, String cpf, Set<AccountModel> accountModels, Date birthDate) {
+	public PeopleModel(Long idPeople, String name, String cpf, Set<AccountModel> accountModels, LocalDate birthDate) {
 		super();
 		this.idPeople = idPeople;
 		this.name = name;
@@ -83,11 +83,11 @@ public class PeopleModel implements Serializable {
 		this.accountModels.add(accountModel);
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 

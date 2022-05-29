@@ -1,7 +1,7 @@
 package br.com.bankaccountmanagement.models;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -31,11 +31,11 @@ public class TransactionModel implements Serializable {
 	@Column(nullable = false)
 	private Double value;
 
-	private LocalDateTime transactionDate;
+	private LocalDate transactionDate;
 
 	public TransactionModel() {
 		// Salva a data da transação.
-		this.transactionDate = LocalDateTime.now();
+		this.transactionDate = LocalDate.now();
 	}
 
 	public TransactionModel(Long idTransacao, Double value) {
@@ -58,7 +58,7 @@ public class TransactionModel implements Serializable {
 		this.value = value;
 	}
 
-	public LocalDateTime getTransactionDate() {
+	public LocalDate getTransactionDate() {
 		return transactionDate;
 	}
 

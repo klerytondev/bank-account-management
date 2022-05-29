@@ -1,6 +1,5 @@
 package br.com.bankaccountmanagement.requestDto;
 
-import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
@@ -37,7 +36,7 @@ public class PeoplerequestDto {
 
 	@NotNull(message = "{campo.data.obrigatorio}")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-	private Date birthDate;
+	private String birthDate;
 
 	public PeoplerequestDto() {
 	}
@@ -45,7 +44,7 @@ public class PeoplerequestDto {
 	public PeoplerequestDto(
 			@NotEmpty(message = "{campo.nome.obrigatorio}") @Length(max = 50, message = "{campo.nome.caracteres}") String name,
 			@CPF(message = "{campo.accountcpf.nulo}") String cpf, Set<AccountModel> accountModels,
-			@NotEmpty(message = "{campo.data.obrigatorio}") Date birthDate) {
+			@NotEmpty(message = "{campo.data.obrigatorio}") String birthDate) {
 		this.name = name;
 		this.cpf = cpf;
 		this.accountModels = accountModels;
@@ -76,11 +75,11 @@ public class PeoplerequestDto {
 		this.accountModels = accountModels;
 	}
 
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 

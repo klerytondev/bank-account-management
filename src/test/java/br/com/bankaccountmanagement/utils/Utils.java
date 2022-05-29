@@ -5,6 +5,7 @@ import br.com.bankaccountmanagement.models.TransactionModel;
 import br.com.bankaccountmanagement.models.enums.AccountType;
 import br.com.bankaccountmanagement.models.enums.ActiveFlag;
 import br.com.bankaccountmanagement.requestDto.DepositRequestDto;
+import br.com.bankaccountmanagement.requestDto.WithdrawRequestDto;
 
 public class Utils {
 
@@ -31,13 +32,30 @@ public class Utils {
 		return depositRequestDto;
 	}
 
-	public static AccountModel createAccountModel(Double balance, Double withdrawLimit) {
+	public static AccountModel createAccountModelActive(Double balance, Double withdrawLimit) {
 		AccountModel accountModel = new AccountModel();
+		accountModel.setIdAccount(1L);
 		accountModel.setAccountType(AccountType.CORRENTE);
-//		accountModel.setActiveFlag(ActiveFlag.MASTERCARD);
+		accountModel.setActiveFlag(ActiveFlag.ACTIVE);
 		accountModel.setBalance(balance);
 		accountModel.setWithdrawalLimit(withdrawLimit);
 		return accountModel;
+	}
+	
+	public static AccountModel createAccountModelBlocked(Double balance, Double withdrawLimit) {
+		AccountModel accountModel = new AccountModel();
+		accountModel.setAccountType(AccountType.CORRENTE);
+		accountModel.setActiveFlag(ActiveFlag.BLOCK);
+		accountModel.setBalance(balance);
+		accountModel.setWithdrawalLimit(withdrawLimit);
+		return accountModel;
+	}
+	
+	public static WithdrawRequestDto createWithdrawRequestDto(AccountType accountType, Double Value) {
+		WithdrawRequestDto withdrawRequestDto = new WithdrawRequestDto();
+		withdrawRequestDto.setAccountType(accountType);
+		withdrawRequestDto.setValue(Value);
+		return withdrawRequestDto;
 	}
 	
 }
