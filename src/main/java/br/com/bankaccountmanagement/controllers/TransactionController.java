@@ -70,7 +70,8 @@ public class TransactionController {
 	public ResponseEntity<Object> getAllPeriodTransactions(
 			@Valid @RequestBody ExtractByPeriodRequestDto extractByPeriodRequestDto,
 			@ApiParam @PathVariable Long idAccount) {
-		return ResponseEntity.status(HttpStatus.OK).body(transactionService.getAllPeriodTransactions(idAccount));
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(transactionService.getAllPeriodTransactions(extractByPeriodRequestDto, idAccount));
 
 	}
 

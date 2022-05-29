@@ -138,10 +138,13 @@ public class TransactionService {
 			throw new ObjetoNaoEncontradoException("transactions not found!");
 		}
 		// Salva transactions existentes no banco de dados em uma lista de transactions
+		// de acordo com o periodo passado
 		List<TransactionModel> transactionModelsList = new ArrayList<>();
 		for (TransactionModel transactionModel : accocuntModelOptional.get().getTransactionModels()) {
-			if(extractByPeriodRequestDto)
-			transactionModelsList.add(transactionModel);
+			if ((transactionModel.getTransactionDate().isAfter(extractByPeriodRequestDto.getInitialDate())
+					&& transactionModel.getTransactionDate().isBefore(extractByPeriodRequestDto.getFinalDate()))) {
+				transactionModelsList.add(transactionModel);
+			}
 		}
 		return transactionModelsList;
 	}
