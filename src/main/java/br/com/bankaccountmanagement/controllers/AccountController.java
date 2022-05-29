@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bankaccountmanagement.models.PeopleModel;
+import br.com.bankaccountmanagement.requestDto.AccountBlockRequestDto;
 import br.com.bankaccountmanagement.requestDto.AccountRequestDto;
 import br.com.bankaccountmanagement.services.AccountService;
 import io.swagger.annotations.Api;
@@ -33,6 +34,13 @@ public class AccountController {
 	public ResponseEntity<Object> saveAccount(@RequestBody @Valid AccountRequestDto accountRequestDto,
 			@PathVariable Long idPeople) {
 		PeopleModel peopleModel = accountService.createAccount(accountRequestDto, idPeople);
+		return ResponseEntity.status(HttpStatus.CREATED).body(peopleModel);
+	}
+	@ApiOperation(value = "Realiza o bloqueio de uma account.")
+	@PostMapping("/block/{idPeople}")
+	public ResponseEntity<Object> blockAccount(@RequestBody @Valid AccountBlockRequestDto accountBlockRequestDto,
+			@PathVariable Long idPeople) {
+		PeopleModel peopleModel = accountService.createAccount(accountBlockRequestDto, idPeople);
 		return ResponseEntity.status(HttpStatus.CREATED).body(peopleModel);
 	}
 

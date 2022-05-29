@@ -2,6 +2,10 @@ package br.com.bankaccountmanagement.models.enums;
 
 import javax.validation.constraints.Pattern;
 
+/*
+ * Enum utilizado para posssiveis entradas de tipo de conta
+ * */
+
 public enum AccountType {
 	
 	CORRENTE("corrente"), POUPANCA("poupanca");
