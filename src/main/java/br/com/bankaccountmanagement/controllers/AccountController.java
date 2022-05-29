@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bankaccountmanagement.models.AccountModel;
 import br.com.bankaccountmanagement.models.PeopleModel;
 import br.com.bankaccountmanagement.requestDto.AccountActiveFlagRequestDto;
 import br.com.bankaccountmanagement.requestDto.AccountRequestDto;
@@ -29,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 //Otimiza o acesso a API
 @CrossOrigin(origins = "*")
 public class AccountController {
-	
+
 	@Autowired
 	AccountService accountService;
 
@@ -40,13 +39,14 @@ public class AccountController {
 		PeopleModel peopleModel = accountService.createAccount(accountRequestDto, idPeople);
 		return ResponseEntity.status(HttpStatus.CREATED).body(peopleModel);
 	}
-	
+
 	@ApiOperation(value = "Altera o status de uma account.")
 	@PostMapping("/status/{idAccount}")
-	public ResponseEntity<Object> activeFlag(@RequestBody @Valid AccountActiveFlagRequestDto accountActiveFlagRequestDto,
-			@PathVariable Long idAccount) {
-		AccountModel accountModel = accountService.activeFlag(accountActiveFlagRequestDto, idAccount);
-		return ResponseEntity.status(HttpStatus.CREATED).body(accountModel);
+	public ResponseEntity<Object> activeFlag(
+			@RequestBody @Valid AccountActiveFlagRequestDto accountActiveFlagRequestDto, @PathVariable Long idAccount) {
+		accountService.activeFlag(accountActiveFlagRequestDto, idAccount);
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body("Status da account alterado para: " + accountActiveFlagRequestDto.getAccountStatus());
 	}
 
 }
