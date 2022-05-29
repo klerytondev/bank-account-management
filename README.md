@@ -57,13 +57,14 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialec
 - [X] Operação de deposito em uma account
 - [X] Operação de consulta em uma account
 - [X] Operação de saque em uma account
-- [ ] Operação de bloqueio em uma account
+- [X] Operação de bloqueio em uma account
 - [X] Extrato de transações de uma account
 - [ ] Extrato por periodo de uma account
 - [X] Validações
 - [x] Documentação Swagger
 - [x] Tratamento de exceções
 - [X] Deploy do projeto na AWS
+- [ ] Testes Unitários
 
 ### Status do Projeto
 <h4 align="left"> 
