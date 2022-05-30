@@ -13,7 +13,7 @@ import br.com.bankaccountmanagement.requestDto.AccountActiveFlagRequestDto;
 import br.com.bankaccountmanagement.requestDto.AccountRequestDto;
 import br.com.bankaccountmanagement.requestDto.DepositRequestDto;
 import br.com.bankaccountmanagement.requestDto.ExtractByPeriodRequestDto;
-import br.com.bankaccountmanagement.requestDto.PeopleRequestDto;
+import br.com.bankaccountmanagement.requestDto.PeoplerequestDto;
 import br.com.bankaccountmanagement.requestDto.WithdrawRequestDto;
 
 public class Utils {
@@ -90,8 +90,8 @@ public class Utils {
 		return new PeopleModel(1L, name, cpf, LocalDate.now());
 	}
 
-	public static PeopleRequestDto createPeopleRequestDto(String name, String cpf) {
-		return new PeopleRequestDto(name, cpf, DateUtils.convertLocalDateToString(LocalDate.now()));
+	public static PeoplerequestDto createPeopleRequestDto(String name, String cpf) {
+		return new PeoplerequestDto(name, cpf, DateUtils.convertLocalDateToString(LocalDate.now()));
 	}
 
 	public static AccountRequestDto createAccountRequestDto() {

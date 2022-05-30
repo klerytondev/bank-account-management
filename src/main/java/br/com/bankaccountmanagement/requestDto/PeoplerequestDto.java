@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
  *          Este DTO recebe os parametros de PeopleModel passados via Json para
  *          criar uma nova pessoa
  */
-	public class PeopleRequestDto{
+	public class PeoplerequestDto{
 
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
@@ -35,10 +35,10 @@ import io.swagger.annotations.ApiModelProperty;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private String birthDate;
 
-	public PeopleRequestDto() {
+	public PeoplerequestDto() {
 	}
 	
-	public PeopleRequestDto(
+	public PeoplerequestDto(
 			@NotEmpty(message = "{campo.nome.obrigatorio}") @Length(max = 50, message = "{campo.nome.caracteres}") String name,
 			@CPF(message = "{campo.accountcpf.nulo}") String cpf,
 			@NotEmpty(message = "{campo.data.obrigatorio}") String birthDate) {
@@ -84,7 +84,7 @@ import io.swagger.annotations.ApiModelProperty;
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PeopleRequestDto other = (PeopleRequestDto) obj;
+		PeoplerequestDto other = (PeoplerequestDto) obj;
 		return Objects.equals(birthDate, other.birthDate) && Objects.equals(cpf, other.cpf)
 				&& Objects.equals(name, other.name);
 	}

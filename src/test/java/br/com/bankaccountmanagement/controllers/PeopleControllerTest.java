@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import br.com.bankaccountmanagement.requestDto.PeopleRequestDto;
+import br.com.bankaccountmanagement.requestDto.PeoplerequestDto;
 import br.com.bankaccountmanagement.services.PeopleService;
 import br.com.bankaccountmanagement.utils.Utils;
 import io.restassured.http.ContentType;
@@ -29,17 +29,17 @@ public class PeopleControllerTest {
 		standaloneSetup(this.peopleController);
 	}
 	
-	PeopleRequestDto peopleRequestDto = Utils.createPeopleRequestDto("kleryton", "07869696447");
+	PeoplerequestDto peoplerequestDto = Utils.createPeopleRequestDto("kleryton", "07869696447");
 	
 	@Test
 	public void shouldCreatePeople() {
 		
 		
-		when(this.peopleServiceMock.createPeople(peopleRequestDto))
+		when(this.peopleServiceMock.createPeople(peoplerequestDto))
 			.thenReturn(Utils.createPeople("kleryton", "07869696447"));
 		given()
 			.contentType(ContentType.JSON)
-			.body(peopleRequestDto)
+			.body(peoplerequestDto)
 		.when()
 			.post("/v1/bankAccountManagement/add/people")
 		.then()
