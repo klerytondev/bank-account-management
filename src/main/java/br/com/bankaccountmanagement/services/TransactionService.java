@@ -83,7 +83,7 @@ public class TransactionService {
 		if (accocuntModelOptional.get().getActiveFlag().equals(ActiveFlag.BLOCK)) {
 			throw new IntegridadeDeDadosException("The account is blocked, it is not possible to make a withdrawal.");
 		}
-		//Verifico se ha limite suficiente para saque
+		// Verifico se ha limite suficiente para saque
 		if (withdrawRequestDto.getValue() > accocuntModelOptional.get().getWithdrawalLimit()) {
 			throw new IntegridadeDeDadosException("Insufficient limit for withdrawal.");
 		}
@@ -91,7 +91,7 @@ public class TransactionService {
 		if (withdrawRequestDto.getValue() <= accocuntModelOptional.get().getBalance()) {
 			accocuntModelOptional.get()
 					.setBalance(accocuntModelOptional.get().getBalance() - withdrawRequestDto.getValue());
-			//Atualizo o limite
+			// Atualizo o limite
 			accocuntModelOptional.get().setWithdrawalLimit(
 					accocuntModelOptional.get().getWithdrawalLimit() - withdrawRequestDto.getValue());
 		} else {
@@ -117,12 +117,14 @@ public class TransactionService {
 		Optional<AccountModel> accocuntModelOptional = accountRepository.findById(idAccount);
 		accocuntModelOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("Account not found."));
 
-		// Verifica se existe transações salvas no banco de acordo com o is da account
+		// Verifica se existe transações salvas no banco de acordo com o id da account
 		// passado, caso contrario retorna exception.
-		if (accocuntModelOptional.get().getTransactionModels().isEmpty()) {
-			throw new ObjetoNaoEncontradoException("transactions not found!");
+		if (accocuntModelOptional.get().getTransactionModels() == null
+				|| accocuntModelOptional.get().getTransactionModels().isEmpty()) {
+			throw new ObjetoNaoEncontradoException("Transactions not found!");
 		}
-		// Salva transactions existentes no banco de dados em uma lista de transactions
+		// Recupera transactions existentes no banco de dados e retorna em uma lista de
+		// transactions
 		List<TransactionModel> transactionModelsList = new ArrayList<>();
 		for (TransactionModel transactionModel : accocuntModelOptional.get().getTransactionModels()) {
 			transactionModelsList.add(transactionModel);
@@ -141,8 +143,9 @@ public class TransactionService {
 
 		// Verifica se existe transações salvas no banco de acordo com o is da account
 		// passado, caso contrario retorna exception.
-		if (accocuntModelOptional.get().getTransactionModels().isEmpty()) {
-			throw new ObjetoNaoEncontradoException("transactions not found!");
+		if (accocuntModelOptional.get().getTransactionModels() == null
+				|| accocuntModelOptional.get().getTransactionModels().isEmpty()) {
+			throw new ObjetoNaoEncontradoException("Transactions not found!");
 		}
 		// Salva transactions existentes no banco de dados em uma lista de transactions
 		// de acordo com o periodo passado

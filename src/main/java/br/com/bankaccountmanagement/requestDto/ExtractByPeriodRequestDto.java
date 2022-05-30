@@ -25,7 +25,6 @@ public class ExtractByPeriodRequestDto implements Serializable {
 
 	public ExtractByPeriodRequestDto(@NotEmpty(message = "{campo.initialDate.obrigatorio}") String initialDate,
 			@NotEmpty(message = "{campo.finalDate.obrigatorio}") String finalDate) {
-		super();
 		this.initialDate = initialDate;
 		this.finalDate = finalDate;
 	}

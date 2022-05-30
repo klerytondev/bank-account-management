@@ -51,11 +51,17 @@ public class PeopleModel implements Serializable {
 	}
 
 	public PeopleModel(Long idPeople, String name, String cpf, Set<AccountModel> accountModels, LocalDate birthDate) {
-		super();
 		this.idPeople = idPeople;
 		this.name = name;
 		this.cpf = cpf;
 		this.accountModels = accountModels;
+		this.birthDate = birthDate;
+	}
+	
+	public PeopleModel(Long idPeople, String name, String cpf, LocalDate birthDate) {
+		this.idPeople = idPeople;
+		this.name = name;
+		this.cpf = cpf;
 		this.birthDate = birthDate;
 	}
 

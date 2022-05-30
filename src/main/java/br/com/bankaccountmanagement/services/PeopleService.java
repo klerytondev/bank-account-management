@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.bankaccountmanagement.models.PeopleModel;
 import br.com.bankaccountmanagement.repositories.PeopleRepository;
-import br.com.bankaccountmanagement.requestDto.PeoplerequestDto;
+import br.com.bankaccountmanagement.requestDto.PeopleRequestDto;
 import br.com.bankaccountmanagement.services.exceptions.ConflictDeDadosException;
 import br.com.bankaccountmanagement.utils.DateUtils;
 
@@ -23,7 +23,7 @@ public class PeopleService {
 
 	@Transactional
 	// Create account e salva em uma people
-	public PeopleModel createPeople(PeoplerequestDto peoplerequestDto) {
+	public PeopleModel createPeople(PeopleRequestDto peoplerequestDto) {
 
 		// Verifica se a people já existe no banco
 		try {
@@ -42,7 +42,7 @@ public class PeopleService {
 	}
 
 	// Coverte um PeoplerequestDto em um PeopleModel
-	public PeopleModel convertDtoToModel(PeoplerequestDto peoplerequestDto) {
+	public PeopleModel convertDtoToModel(PeopleRequestDto peoplerequestDto) {
 
 		PeopleModel peopleModel = new PeopleModel();
 		peopleModel.setName(peoplerequestDto.getName());

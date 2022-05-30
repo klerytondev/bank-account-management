@@ -41,13 +41,18 @@ public class TransactionModel implements Serializable {
 	public TransactionModel(Long idTransacao, Double value) {
 		this.idTransaction = idTransacao;
 		this.value = value;
+		// Salva a data da transação.
+		this.transactionDate = LocalDate.now();
 
 	}
+
 	public TransactionModel(Long idTransaction, Long idAccount, Double value) {
 		this.idTransaction = idTransaction;
 		this.value = value;
 		this.idAccount = idAccount;
-		
+		// Salva a data da transação.
+		this.transactionDate = LocalDate.now();
+
 	}
 
 	public Double getValue() {
@@ -88,8 +93,8 @@ public class TransactionModel implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		TransactionModel other = (TransactionModel) obj;
-		return Objects.equals(idTransaction, other.idTransaction) && Objects.equals(transactionDate, other.transactionDate)
-				&& Objects.equals(value, other.value);
+		return Objects.equals(idTransaction, other.idTransaction)
+				&& Objects.equals(transactionDate, other.transactionDate) && Objects.equals(value, other.value);
 	}
 
 	@Override
