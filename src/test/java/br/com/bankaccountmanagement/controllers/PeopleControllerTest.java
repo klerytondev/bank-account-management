@@ -29,10 +29,11 @@ public class PeopleControllerTest {
 		standaloneSetup(this.peopleController);
 	}
 	
+	PeopleRequestDto peopleRequestDto = Utils.createPeopleRequestDto("kleryton", "07869696447");
+	
 	@Test
 	public void shouldCreatePeople() {
 		
-		PeopleRequestDto peopleRequestDto = Utils.createPeopleRequestDto("kleryton", "07869696447");
 		
 		when(this.peopleServiceMock.createPeople(peopleRequestDto))
 			.thenReturn(Utils.createPeople("kleryton", "07869696447"));
