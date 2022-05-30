@@ -48,6 +48,8 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialec
 7. Spring Boot 2.6.4
 8. Swagger 
 9. CI/CD CodePipeline - AWS
+10. ElasticBeanstalk - AWS
+11. RDS MySql - AWS
 
 ### funcionalidades
 - [x] Gerenciamento de account
