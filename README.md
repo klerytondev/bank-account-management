@@ -9,6 +9,9 @@ API Restful genérica que realiza o gerenciamento de contas bancárias.
 # Documentação
 *  A documentação da API foi gerada com Swagger e está disponível em ```http://bankmanagement-env.eba-tizakmp5.us-east-1.elasticbeanstalk.com/swagger-ui.html```
 
+# Diagrama de modelo lógico do banco de dados
+![image](https://user-images.githubusercontent.com/97842444/170992159-d464df7b-c452-4cbe-ab04-13ea87b4b232.png)
+
 # Pré-requisitos(manual de execução)
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [JDK11](https://www.oracle.com/java/technologies/downloads/#java11), [MAVEN 3](https://maven.apache.org/index.html) e [MYSQL](https://www.mysql.com/downloads/). 
