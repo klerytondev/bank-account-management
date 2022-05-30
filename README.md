@@ -57,9 +57,9 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialec
 - [X] Operação de deposito em uma account
 - [X] Operação de consulta em uma account
 - [X] Operação de saque em uma account
-- [X] Operação de bloqueio em uma account
+- [X] Operação de bloqueio em uma account - Uma account bloqueada não pode realizar transações financeiras(saque e deposito)
 - [X] Extrato de transações de uma account
-- [ ] Extrato por periodo de uma account
+- [X] Extrato por periodo de uma account
 - [X] Validações
 - [x] Documentação Swagger
 - [x] Tratamento de exceções
