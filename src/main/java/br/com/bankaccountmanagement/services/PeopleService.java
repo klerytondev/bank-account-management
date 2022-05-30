@@ -22,28 +22,28 @@ public class PeopleService {
 
 	@Transactional
 	// Create account e salva em uma people
-	public PeopleModel createPeople(PeopleRequestDto peoplerequestDto) {
+	public PeopleModel createPeople(PeopleRequestDto peopleRequestDto) {
 
 		// Verifica se a people já existe no banco
-		if (peopleRepository.existsByCpf(peoplerequestDto.getCpf()))
+		if (peopleRepository.existsByCpf(peopleRequestDto.getCpf()))
 			throw new ConflictDeDadosException("CPF is already in use!");
 
 		// Converte o peoplerequestDto em um peopleModel
 		PeopleModel peopleModelPersist = new PeopleModel();
-		peopleModelPersist = convertDtoToModel(peoplerequestDto);
+		peopleModelPersist = convertDtoToModel(peopleRequestDto);
 
 		// Salva uma nova pessoa no banco de dados
 		return peopleRepository.save(peopleModelPersist);
 
 	}
 
-	// Coverte um PeoplerequestDto em um PeopleModel
-	public PeopleModel convertDtoToModel(PeopleRequestDto peoplerequestDto) {
+	// Coverte um PeopleRequestDto em um PeopleModel
+	public PeopleModel convertDtoToModel(PeopleRequestDto peopleRequestDto) {
 
 		PeopleModel peopleModel = new PeopleModel();
-		peopleModel.setName(peoplerequestDto.getName());
-		peopleModel.setCpf(peoplerequestDto.getCpf());
-		peopleModel.setBirthDate(DateUtils.convertStringToLocalDate(peoplerequestDto.getBirthDate()));
+		peopleModel.setName(peopleRequestDto.getName());
+		peopleModel.setCpf(peopleRequestDto.getCpf());
+		peopleModel.setBirthDate(DateUtils.convertStringToLocalDate(peopleRequestDto.getBirthDate()));
 		return peopleModel;
 	}
 
