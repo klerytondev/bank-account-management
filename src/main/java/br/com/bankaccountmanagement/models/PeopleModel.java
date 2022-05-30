@@ -3,17 +3,12 @@ package br.com.bankaccountmanagement.models;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -38,11 +33,6 @@ public class PeopleModel implements Serializable {
 	@Column(nullable = false)
 	private String cpf;
 
-	//Uma pessoa pode ter várias contas @oneToMany
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "people_id", referencedColumnName = "idPeople", foreignKey = @ForeignKey(name = "fk_accounts"))
-	private Set<AccountModel> accountModels;
-
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate birthDate;
@@ -50,20 +40,13 @@ public class PeopleModel implements Serializable {
 	public PeopleModel() {
 	}
 
-	public PeopleModel(Long idPeople, String name, String cpf, Set<AccountModel> accountModels, LocalDate birthDate) {
-		this.idPeople = idPeople;
-		this.name = name;
-		this.cpf = cpf;
-		this.accountModels = accountModels;
-		this.birthDate = birthDate;
-	}
-	
 	public PeopleModel(Long idPeople, String name, String cpf, LocalDate birthDate) {
 		this.idPeople = idPeople;
 		this.name = name;
 		this.cpf = cpf;
 		this.birthDate = birthDate;
 	}
+	
 
 	public String getName() {
 		return name;
@@ -81,14 +64,6 @@ public class PeopleModel implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public Set<AccountModel> getAccountModels() {
-		return accountModels;
-	}
-
-	public void setAccountModels(AccountModel accountModel) {
-		this.accountModels.add(accountModel);
-	}
-
 	public LocalDate getBirthDate() {
 		return birthDate;
 	}
@@ -103,7 +78,7 @@ public class PeopleModel implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(accountModels, birthDate, cpf, idPeople, name);
+		return Objects.hash(birthDate, cpf, idPeople, name);
 	}
 
 	@Override
@@ -115,9 +90,8 @@ public class PeopleModel implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		PeopleModel other = (PeopleModel) obj;
-		return Objects.equals(accountModels, other.accountModels) && Objects.equals(birthDate, other.birthDate)
-				&& Objects.equals(cpf, other.cpf) && Objects.equals(idPeople, other.idPeople)
-				&& Objects.equals(name, other.name);
+		return Objects.equals(birthDate, other.birthDate) && Objects.equals(cpf, other.cpf)
+				&& Objects.equals(idPeople, other.idPeople) && Objects.equals(name, other.name);
 	}
 
 }

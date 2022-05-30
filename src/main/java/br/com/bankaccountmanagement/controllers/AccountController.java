@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bankaccountmanagement.models.PeopleModel;
+import br.com.bankaccountmanagement.models.AccountModel;
 import br.com.bankaccountmanagement.requestDto.AccountActiveFlagRequestDto;
 import br.com.bankaccountmanagement.requestDto.AccountRequestDto;
 import br.com.bankaccountmanagement.services.AccountService;
@@ -36,8 +36,8 @@ public class AccountController {
 	@PostMapping("/add/account/{idPeople}")
 	public ResponseEntity<Object> saveAccount(@RequestBody @Valid AccountRequestDto accountRequestDto,
 			@PathVariable Long idPeople) {
-		PeopleModel peopleModel = accountService.createAccount(accountRequestDto, idPeople);
-		return ResponseEntity.status(HttpStatus.CREATED).body(peopleModel);
+		AccountModel accountModel = accountService.createAccount(accountRequestDto, idPeople);
+		return ResponseEntity.status(HttpStatus.CREATED).body(accountModel);
 	}
 
 	@ApiOperation(value = "Altera o status de uma account.")

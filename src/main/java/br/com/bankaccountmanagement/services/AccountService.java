@@ -5,7 +5,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.bankaccountmanagement.models.AccountModel;
@@ -15,7 +14,6 @@ import br.com.bankaccountmanagement.repositories.AccountRepository;
 import br.com.bankaccountmanagement.repositories.PeopleRepository;
 import br.com.bankaccountmanagement.requestDto.AccountActiveFlagRequestDto;
 import br.com.bankaccountmanagement.requestDto.AccountRequestDto;
-import br.com.bankaccountmanagement.services.exceptions.ConflictDeDadosException;
 import br.com.bankaccountmanagement.services.exceptions.ObjetoNaoEncontradoException;
 
 /**
@@ -32,28 +30,25 @@ public class AccountService {
 
 	@Transactional
 	// Cria account e salva em uma people
-	public PeopleModel createAccount(AccountRequestDto accountRequestDto, Long idPeople) {
+	public AccountModel createAccount(AccountRequestDto accountRequestDto, Long idPeople) {
 
 		// Verifica se a people existe no banco
 		Optional<PeopleModel> peopleModelOptional = peopleRepository.findById(idPeople);
 		peopleModelOptional.orElseThrow(() -> new ObjetoNaoEncontradoException("People not found."));
 
 		// Cria uma nova account e converte o accountRequestDto em um accountModel
-		AccountModel accountModelPersisti = new AccountModel();
-		accountModelPersisti = convertDtoToModel(accountRequestDto);
+		AccountModel accountModelPersist = new AccountModel();
+		accountModelPersist = convertDtoToModel(accountRequestDto);
 
-		// Seta uma account em people
-		peopleModelOptional.get().setAccountModels(accountModelPersisti);
+//		// Seta uma account em people
+//		peopleModelOptional.get().setAccountModels(accountModelPersist);
 
-		PeopleModel peopleModelPersisti;
+		// Seta uma people em account
+		accountModelPersist.setPeople(peopleModelOptional.get());
 
-		// lança uma exceção se a account já existir na people
-		try {
-			peopleModelPersisti = peopleRepository.save(peopleModelOptional.get());
-		} catch (DataIntegrityViolationException e) {
-			throw new ConflictDeDadosException("Account is already in use!");
-		}
-		return peopleModelPersisti;
+//		peopleRepository.save(peopleModelOptional.get());
+		AccountModel accoutModelReturn = accountRepository.save(accountModelPersist);
+		return accoutModelReturn;
 	}
 
 	@Transactional
@@ -71,6 +66,7 @@ public class AccountService {
 		AccountModel accountModel = accountRepository.save(accountModelOptional.get());
 		return accountModel;
 	}
+
 	/*
 	 * Este metodo coverte um requestDTO em accountModel
 	 */

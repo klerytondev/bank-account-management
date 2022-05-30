@@ -10,11 +10,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -54,8 +56,12 @@ public class AccountModel implements Serializable {
 
 	// Uma account pode ter várias transações @oneToMany
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "account_id", foreignKey = @ForeignKey(name = "fk_transactions"))
+	@JoinColumn(name = "account_id", foreignKey = @ForeignKey(name = "fk_account"))
 	private Set<TransactionModel> transactionModels;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "people_id", foreignKey = @ForeignKey(name = "fk_people"))
+	private PeopleModel peopleModel;
 
 	public AccountModel() {
 		this.activeFlag = ActiveFlag.ACTIVE;
@@ -63,12 +69,13 @@ public class AccountModel implements Serializable {
 	}
 
 	public AccountModel(Double balance, Double withdrawalLimit, ActiveFlag activeFlag, AccountType accountType,
-			LocalDate createdDate, Set<TransactionModel> transactionModels) {
+			LocalDate createdDate, Set<TransactionModel> transactionModels, PeopleModel peopleModel) {
 		this.balance = balance;
 		this.withdrawalLimit = withdrawalLimit;
 		this.activeFlag = activeFlag;
 		this.accountType = accountType;
 		this.transactionModels = transactionModels;
+		this.peopleModel = peopleModel;
 	}
 
 	public Double getBalance() {
@@ -120,6 +127,14 @@ public class AccountModel implements Serializable {
 	}
 	public void setIdAccount(Long idAccount) {
 		this.idAccount = idAccount;
+	}
+	
+	public void setPeople(PeopleModel people) {
+		this.peopleModel= people;
+	}
+	
+	public PeopleModel getIdPeople() {
+		return peopleModel;
 	}
 
 	@Override
