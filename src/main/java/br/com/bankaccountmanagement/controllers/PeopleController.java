@@ -36,5 +36,4 @@ public class PeopleController {
 		PeopleModel peopleModel = peopleService.createPeople(peoplerequestDto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(peopleModel);
 	}
-
 }
