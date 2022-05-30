@@ -14,19 +14,16 @@ import org.mockito.MockitoAnnotations;
 
 import br.com.bankaccountmanagement.models.AccountModel;
 import br.com.bankaccountmanagement.models.PeopleModel;
-import br.com.bankaccountmanagement.models.TransactionModel;
-import br.com.bankaccountmanagement.models.enums.AccountType;
 import br.com.bankaccountmanagement.models.enums.ActiveFlag;
 import br.com.bankaccountmanagement.repositories.AccountRepository;
 import br.com.bankaccountmanagement.repositories.PeopleRepository;
-import br.com.bankaccountmanagement.requestDto.PeopleRequestDto;
-import br.com.bankaccountmanagement.requestDto.WithdrawRequestDto;
+import br.com.bankaccountmanagement.requestDto.AccountActiveFlagRequestDto;
+import br.com.bankaccountmanagement.requestDto.AccountRequestDto;
 import br.com.bankaccountmanagement.utils.Utils;
 
 @DisplayName("Testes da service de Account")
 public class AccountServiceTest {
 
-	
 	@InjectMocks
 	AccountService accountService;
 
@@ -35,7 +32,7 @@ public class AccountServiceTest {
 
 	@Mock
 	private AccountRepository accountRepositoryMock;
-	
+
 	@Mock
 	private PeopleRepository peopleRepository;
 
@@ -43,43 +40,96 @@ public class AccountServiceTest {
 	void init() {
 		MockitoAnnotations.openMocks(this);
 	}
-	
-//	@Test
-//	@DisplayName("Realiza a criação de uma account")
-//	void shouldCreateAccount() {
-//		// Cenário
-//		//Cria uma pessoa
-//		PeopleModel peopleModel = Utils.createPeople("kleryton", "07869696447");
-//		
-//		// Crio a account
-//		AccountModel accountModel = Utils.createAccountModelActive(1200.00, 12000.00);
-//		// Transformo account em optional
-//		Optional<AccountModel> oAccocuntModel = Optional.of(accountModel);
-//		peopleModel.setAccountModels(accountModel);
-//		// Cria o DTO da requisição de criar account
-//		PeopleRequestDto peopleRequestDto = Utils.createPeopleRequestDto("kleryton", "07869696447");
-//
-//		// Ação
-//		// Recupera a account com Mock do accountRepository
-//		Mockito.when(accountRepositoryMock.findById(1L)).thenReturn(oAccocuntModel);
-//		// Salva a transaction com mock do transactionRepository
-//		Mockito.when(transactionRepositoryMock.save(ArgumentMatchers.any())).thenReturn(result);
-//		// Executa o metodo de saque da tranctionService
-//		TransactionModel withdraw = transactionService.withdraw(withdrawRequestDto, 1L);
-//
-//		// Validações
-//		// Verifica se a conta esta ativa
-//		Assertions.assertTrue(accountModel.getActiveFlag().equals(ActiveFlag.ACTIVE));
-//		// Verifica se a transação de saque é notnull
-//		Assertions.assertNotNull(withdraw);
-//		// Verifica se o valor solicitado para saque é igual ao valor que realmente foi
-//		// sacado
-//		Assertions.assertEquals(withdrawRequestDto.getValue(), withdraw.getValue());
-//		// Verifica se o valor solicitado para saque é <= ao saldo
-//		Assertions.assertTrue(withdrawRequestDto.getValue() <= accountModel.getBalance());
-//		// Verifica se o valor solicitado para saque é <= ao limite
-//		Assertions.assertTrue(withdrawRequestDto.getValue() <= accountModel.getWithdrawalLimit());
-//	}
-	
-	
+
+	@Test
+	@DisplayName("Realiza a criação de uma account")
+	void shouldCreateAccount() {
+		// Cenário
+		// Cria uma pessoa
+		PeopleModel peopleModel = Utils.createPeople("kleryton", "07869696447");
+		// Crio a account
+		AccountModel accountModel = Utils.createAccountModelActive(1200.00, 12000.00);
+		accountModel.setPeople(peopleModel);
+		// Cria o DTO da requisição de criar account
+		AccountRequestDto accountRequestDto = Utils.createAccountRequestDto();
+
+		// Ação
+		// Recupera a people com Mock do peopleRepository
+		Mockito.when(peopleRepository.findById(1L)).thenReturn(Optional.of(peopleModel));
+		// Salva a account com mock do accountRepositoryMock
+		Mockito.when(accountRepositoryMock.save(ArgumentMatchers.any())).thenReturn(accountModel);
+		// Executa o metodo de criar account do accountService
+		AccountModel account = accountService.createAccount(accountRequestDto, 1L);
+
+		// Validações
+		// Verifica se a account é notnull
+		Assertions.assertNotNull(account);
+	}
+
+	@Test
+	@DisplayName("Error ao criar acount por people não encontrada")
+	void shouldFailPeopleNotFound() {
+		// Cenário
+		/// Cria o DTO da requisição de criar account
+		AccountRequestDto accountRequestDto = Utils.createAccountRequestDto();
+
+		// Recupera a people com Mock do peopleRepository
+		Mockito.when(peopleRepository.findById(1L)).thenReturn(Optional.empty());
+
+		// Ação/Validação
+		// Executa o metodo de deposito da tranctionService e valida a exception lançada
+		try {
+			accountService.createAccount(accountRequestDto, 1L);
+			Assertions.fail("Deve lançar uma exception");
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assertions.assertEquals("People not found.", e.getMessage());
+		}
+	}
+
+	@Test
+	@DisplayName("Altera o Status da account")
+	void shouldChangeStatus() {
+		// Cenário
+		// Crio a account
+		AccountModel accountModel = Utils.createAccountModelActive(1200.00, 12000.00);
+		// Cria o DTO da requisição para alterar status de account
+		AccountActiveFlagRequestDto accActiveFlagRequestDto = Utils.cretaeAccountActiveRequestDto();
+		accountModel.setActiveFlag(ActiveFlag.BLOCK);
+
+		// Ação
+		// Recupera a account com Mock do accountRepository
+		Mockito.when(accountRepositoryMock.findById(1L)).thenReturn(Optional.of(accountModel));
+		// Salva a account com mock do accountRepositoryMock
+		Mockito.when(accountRepositoryMock.save(ArgumentMatchers.any())).thenReturn(accountModel);
+		// Executa o metodo de criar account do accountService
+		AccountModel account = accountService.activeFlag(accActiveFlagRequestDto, 1L);
+
+		// Validações
+		// Verifica se a account é notnull
+		Assertions.assertNotNull(account);
+		Assertions.assertEquals(accActiveFlagRequestDto.getAccountStatus(), account.getActiveFlag().toString());
+	}
+
+	@Test
+	@DisplayName("Account não encontrada para alterar status")
+	void shouldChangeStatusFailAccountNotFound() {
+		// Cenário
+		// Cria o DTO da requisição para alterar status de account
+		AccountActiveFlagRequestDto accActiveFlagRequestDto = Utils.cretaeAccountActiveRequestDto();
+
+		// Recupera a account com Mock do accountRepository
+		Mockito.when(accountRepositoryMock.findById(1L)).thenReturn(Optional.empty());
+
+		// Ação/Validação
+		// Executa o metodo de deposito da tranctionService e valida a exception lançada
+		try {
+			accountService.activeFlag(accActiveFlagRequestDto, 1L);
+			Assertions.fail("Deve lançar uma exception");
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assertions.assertEquals("Account not found.", e.getMessage());
+		}
+	}
+
 }

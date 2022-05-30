@@ -9,6 +9,8 @@ import br.com.bankaccountmanagement.models.PeopleModel;
 import br.com.bankaccountmanagement.models.TransactionModel;
 import br.com.bankaccountmanagement.models.enums.AccountType;
 import br.com.bankaccountmanagement.models.enums.ActiveFlag;
+import br.com.bankaccountmanagement.requestDto.AccountActiveFlagRequestDto;
+import br.com.bankaccountmanagement.requestDto.AccountRequestDto;
 import br.com.bankaccountmanagement.requestDto.DepositRequestDto;
 import br.com.bankaccountmanagement.requestDto.ExtractByPeriodRequestDto;
 import br.com.bankaccountmanagement.requestDto.PeopleRequestDto;
@@ -46,7 +48,7 @@ public class Utils {
 		accountModel.setActiveFlag(ActiveFlag.ACTIVE);
 		accountModel.setBalance(balance);
 		accountModel.setWithdrawalLimit(withdrawLimit);
-		
+
 		return accountModel;
 	}
 
@@ -83,13 +85,27 @@ public class Utils {
 				DateUtils.convertLocalDateToString(dateInit), DateUtils.convertLocalDateToString(dateFinal));
 		return extractByPeriodRequestDto;
 	}
-	
+
 	public static PeopleModel createPeople(String name, String cpf) {
 		return new PeopleModel(1L, name, cpf, LocalDate.now());
 	}
-	
+
 	public static PeopleRequestDto createPeopleRequestDto(String name, String cpf) {
 		return new PeopleRequestDto(name, cpf, DateUtils.convertLocalDateToString(LocalDate.now()));
+	}
+
+	public static AccountRequestDto createAccountRequestDto() {
+		AccountRequestDto accountRequestDto = new AccountRequestDto();
+		accountRequestDto.setAccountType(AccountType.CORRENTE);
+		accountRequestDto.setWithdrawalLimit(1000.00);
+		return accountRequestDto;
+	}
+
+	public static AccountActiveFlagRequestDto cretaeAccountActiveRequestDto() {
+		AccountActiveFlagRequestDto accountActiveFlagRequestDto = new AccountActiveFlagRequestDto();
+		accountActiveFlagRequestDto.setAccountStatus("BLOCK");
+		return accountActiveFlagRequestDto;
+
 	}
 
 }

@@ -3,7 +3,6 @@ package br.com.bankaccountmanagement.services;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.bankaccountmanagement.models.PeopleModel;
@@ -26,11 +25,8 @@ public class PeopleService {
 	public PeopleModel createPeople(PeopleRequestDto peoplerequestDto) {
 
 		// Verifica se a people já existe no banco
-		try {
-			peopleRepository.existsByCpf(peoplerequestDto.getCpf());
-		} catch (DataIntegrityViolationException e) {
+		if (peopleRepository.existsByCpf(peoplerequestDto.getCpf()))
 			throw new ConflictDeDadosException("CPF is already in use!");
-		}
 
 		// Converte o peoplerequestDto em um peopleModel
 		PeopleModel peopleModelPersist = new PeopleModel();

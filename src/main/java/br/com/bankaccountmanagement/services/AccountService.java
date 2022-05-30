@@ -40,13 +40,10 @@ public class AccountService {
 		AccountModel accountModelPersist = new AccountModel();
 		accountModelPersist = convertDtoToModel(accountRequestDto);
 
-//		// Seta uma account em people
-//		peopleModelOptional.get().setAccountModels(accountModelPersist);
-
 		// Seta uma people em account
 		accountModelPersist.setPeople(peopleModelOptional.get());
 
-//		peopleRepository.save(peopleModelOptional.get());
+		//Salvo uma account no BD
 		AccountModel accoutModelReturn = accountRepository.save(accountModelPersist);
 		return accoutModelReturn;
 	}
