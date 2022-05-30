@@ -7,7 +7,7 @@ API Restful genérica que realiza o gerenciamento de contas bancárias.
 3. Gerenciamento de transactions (CRUD completo)
 
 # Documentação
-*  A documentação da API foi gerada com Swagger e está disponível em ```http://bankmanagement-env.eba-tizakmp5.us-east-1.elasticbeanstalk.com/swagger-ui.html```
+*  A documentação da API foi gerada com Swagger e está disponível em ```http://bankmanagementaws-env.eba-r77cnmrm.us-east-1.elasticbeanstalk.com/swagger-ui.html```
 
 # Diagrama de modelo lógico do banco de dados
 ![image](https://user-images.githubusercontent.com/97842444/170992159-d464df7b-c452-4cbe-ab04-13ea87b4b232.png)
