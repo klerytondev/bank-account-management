@@ -3,6 +3,9 @@ package br.com.bankaccountmanagement.controllers.exceptions;
 import java.io.Serializable;
 import java.time.Instant;
 
+/**
+ * @author: Kleryton de souza
+ */
 //Classe para criar um objeto com o estado e comportamento da exceção gerada na @ControllerAdvice 
 public class StandarError implements Serializable {
 	private static final long serialVersionUID = 1L;

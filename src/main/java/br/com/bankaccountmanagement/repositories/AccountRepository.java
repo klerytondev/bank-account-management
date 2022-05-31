@@ -6,10 +6,10 @@ import br.com.bankaccountmanagement.models.AccountModel;
 
 /**
  * @author: Kleryton de souza
+ * 
  * Esta classe cria um beans para persisti no banco
  * 
  * */
-
 public interface AccountRepository  extends JpaRepository<AccountModel, Long>{
 
 }

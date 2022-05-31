@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * @author: Kleryton de souza
  * 
+ * Este DTO recebe os parametros passados via Json para realizar busca de transações por periodo
  * */
 public class ExtractByPeriodRequestDto implements Serializable {
 	private static final long serialVersionUID = 1L;

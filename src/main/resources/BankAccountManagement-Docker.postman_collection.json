@@ -173,7 +173,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"accountType\" : \"CORRENTE\",\r\n    \"value\" : 1000000000000\r\n}",
+							"raw": "{\r\n    \"accountType\" : \"CORRENTE\",\r\n    \"value\" : 1000.00\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

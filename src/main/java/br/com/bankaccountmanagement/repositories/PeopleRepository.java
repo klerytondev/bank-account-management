@@ -10,7 +10,6 @@ import br.com.bankaccountmanagement.models.PeopleModel;
  * Esta classe cria um beans para persisti no banco
  * 
  * */
-
 public interface PeopleRepository extends JpaRepository<PeopleModel, Long> {
 
 	// Metodo de consulta ao banco de dados pelo cpf

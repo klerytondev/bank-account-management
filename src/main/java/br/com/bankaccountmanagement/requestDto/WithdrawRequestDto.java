@@ -14,7 +14,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * Este DTO recebe os parametros passados via Json para realizar um saque de account
  * */
 public class WithdrawRequestDto implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	@Schema(description = "Tipo da conta. ")

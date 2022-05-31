@@ -1,5 +1,6 @@
 package br.com.bankaccountmanagement.requestDto;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.validation.constraints.NotEmpty;
@@ -13,8 +14,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * 
  * Este DTO recebe os parametros de AccountModel passados via Json para criar uma nova account
  * */
-public class AccountRequestDto {
-
+public class AccountRequestDto implements Serializable {
+	private static final long serialVersionUID = 1L;
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
 	@Schema(description = "Limite de saque da conta. ")

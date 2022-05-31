@@ -17,7 +17,6 @@ import br.com.bankaccountmanagement.services.exceptions.ObjetoNaoEncontradoExcep
 /**
  * @author: Kleryton de souza
  */
-
 //Anotação que permite tratar exceções em toda a aplicação de forma global
 @ControllerAdvice
 public class ApplicationControllerAdvice {

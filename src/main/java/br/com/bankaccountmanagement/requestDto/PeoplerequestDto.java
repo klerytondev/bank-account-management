@@ -1,5 +1,6 @@
 package br.com.bankaccountmanagement.requestDto;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.validation.constraints.NotEmpty;
@@ -15,11 +16,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * @author: Kleryton de souza
  * 
- *          Este DTO recebe os parametros de PeopleModel passados via Json para
- *          criar uma nova pessoa
+ * Este DTO recebe os parametros de PeopleModel passados via Json para
+ * criar uma nova pessoa
  */
-	public class PeoplerequestDto{
-
+public class PeoplerequestDto implements Serializable {
+	private static final long serialVersionUID = 1L;
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
 	@Schema(description = "Nome do cliente. ")
@@ -37,7 +38,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 	public PeoplerequestDto() {
 	}
-	
+
 	public PeoplerequestDto(
 			@NotEmpty(message = "{campo.nome.obrigatorio}") @Length(max = 50, message = "{campo.nome.caracteres}") String name,
 			@CPF(message = "{campo.accountcpf.nulo}") String cpf,

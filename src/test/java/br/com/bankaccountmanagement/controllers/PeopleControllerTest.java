@@ -1,6 +1,5 @@
 package br.com.bankaccountmanagement.controllers;
 
-
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.standaloneSetup;
 import static org.mockito.Mockito.when;
@@ -17,6 +16,9 @@ import br.com.bankaccountmanagement.services.PeopleService;
 import br.com.bankaccountmanagement.utils.Utils;
 import io.restassured.http.ContentType;
 
+/**
+ * @author: Kleryton de souza
+ */
 @DisplayName("Testes da controller de people")
 @WebMvcTest(PeopleController.class)
 public class PeopleControllerTest {
