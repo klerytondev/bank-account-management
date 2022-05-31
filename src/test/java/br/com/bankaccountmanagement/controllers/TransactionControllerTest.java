@@ -14,6 +14,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import br.com.bankaccountmanagement.models.TransactionModel;
 import br.com.bankaccountmanagement.models.enums.AccountType;
 import br.com.bankaccountmanagement.requestDto.DepositRequestDto;
+import br.com.bankaccountmanagement.requestDto.ExtractByPeriodRequestDto;
 import br.com.bankaccountmanagement.requestDto.WithdrawRequestDto;
 import br.com.bankaccountmanagement.services.TransactionService;
 import br.com.bankaccountmanagement.utils.Utils;
@@ -37,6 +38,7 @@ public class TransactionControllerTest {
 	TransactionModel transactionModel = Utils.createTransactionModel(1L, 20000.00);
 	DepositRequestDto depositRequestDto = Utils.createDepositRequestDto(AccountType.CORRENTE, 2000.0);
 	WithdrawRequestDto withdrawRequestDto = Utils.createWithdrawRequestDto(AccountType.CORRENTE, 100.00);
+	ExtractByPeriodRequestDto extractByPeriodRequestDto = Utils.createExtractByPeriodRequestDto();
 	
 	@DisplayName("Realiza um deposito com sucesso")
 	@Test
@@ -134,14 +136,59 @@ public class TransactionControllerTest {
 	@Test
 	public void searchTransactionsSuccessfully() {
 		
-		when(this.transactionService.balanceAccount(1L))
-			.thenReturn(2000.0);
+		when(this.transactionService.getAllTransactions(1L))
+			.thenReturn(Utils.createListTransactionModel(1L));
 		given()
 			.contentType(ContentType.JSON)
 		.when()
-			.get("/v1/bankAccountManagement/saldo/{idAccount}", 1L)
+			.get("/v1/bankAccountManagement/transacoes/{idAccount}", 1L)
 		.then()
-			.statusCode(201)
+			.statusCode(200)
+			.extract().response();
+	}
+	
+	@DisplayName("Error ao buscar transações de uma account pelo id")
+	@Test
+	public void searchTransactionsFail() {
+		
+		when(this.transactionService.getAllTransactions(1L))
+			.thenReturn(Utils.createListTransactionModel(1L));
+		given()
+			.contentType(ContentType.JSON)
+		.when()
+			.get("/v1/bankAccountManagement/transacoes/{idAccount}", "")
+		.then()
+			.statusCode(404)
+			.extract().response();
+	}
+	
+	@DisplayName("Retorna todas as transações de uma account por periodo")
+	@Test
+	public void searchTransactionsByPeriodSuccessfully() {
+		
+		when(this.transactionService.getAllPeriodTransactions(extractByPeriodRequestDto, 1L))
+			.thenReturn(Utils.createListTransactionModel(1L));
+		given()
+			.contentType(ContentType.JSON)
+			.body(extractByPeriodRequestDto)
+		.when()
+			.get("/v1/bankAccountManagement/transacoes/periodo/{idAccount}", 1L)
+		.then()
+			.statusCode(200)
+			.extract().response();
+	}
+	
+	@DisplayName("Error ao buscar transações de uma account por periodo")
+	@Test
+	public void searchTransactionsByPeriodFail() {
+		
+		given()
+			.contentType(ContentType.JSON)
+			.body("")
+		.when()
+			.get("/v1/bankAccountManagement/transacoes/periodo/{idAccount}", 1L)
+		.then()
+			.statusCode(400)
 			.extract().response();
 	}
 }

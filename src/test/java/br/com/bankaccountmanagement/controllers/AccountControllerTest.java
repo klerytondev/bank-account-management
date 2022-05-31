@@ -79,7 +79,7 @@ public class AccountControllerTest {
 //	public void shouldChangeAccountStatus() {
 //		
 //		when(this.accountServiceMock.activeFlag(accountActiveFlagRequestDto, 1L))
-//			.thenReturn(accountModel);
+//			.thenReturn(Utils.createAccountModelBlocked(0.0, 20000.00));
 //		given()
 //			.contentType(ContentType.JSON)
 //			.body(accountActiveFlagRequestDto)

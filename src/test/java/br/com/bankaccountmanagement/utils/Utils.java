@@ -45,7 +45,6 @@ public class Utils {
 		AccountModel accountModel = new AccountModel();
 		accountModel.setIdAccount(1L);
 		accountModel.setAccountType(AccountType.CORRENTE);
-		accountModel.setActiveFlag(ActiveFlag.ACTIVE);
 		accountModel.setBalance(balance);
 		accountModel.setWithdrawalLimit(withdrawLimit);
 
@@ -103,7 +102,7 @@ public class Utils {
 
 	public static AccountActiveFlagRequestDto cretaeAccountActiveRequestDto() {
 		AccountActiveFlagRequestDto accountActiveFlagRequestDto = new AccountActiveFlagRequestDto();
-		accountActiveFlagRequestDto.setAccountStatus("BLOCK");
+		accountActiveFlagRequestDto.setAccountStatus(ActiveFlag.BLOCK.toString());
 		return accountActiveFlagRequestDto;
 
 	}

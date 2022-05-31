@@ -20,6 +20,9 @@ public class ExtractByPeriodRequestDto implements Serializable {
 	@Schema(description = "Data final para extrato por periodo. ")
 	@NotEmpty(message = "{campo.finalDate.obrigatorio}")
 	private String finalDate;
+	
+	public ExtractByPeriodRequestDto() {
+	}
 
 	public ExtractByPeriodRequestDto(@NotEmpty(message = "{campo.initialDate.obrigatorio}") String initialDate,
 			@NotEmpty(message = "{campo.finalDate.obrigatorio}") String finalDate) {

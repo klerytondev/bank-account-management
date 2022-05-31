@@ -1,5 +1,7 @@
 package br.com.bankaccountmanagement.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +61,8 @@ public class TransactionController {
 	@Operation(summary = "Retorna todas as transações de uma account")
 	@GetMapping("/transacoes/{idAccount}")
 	public ResponseEntity<Object> getAllTransactions(@Parameter @PathVariable Long idAccount) {
-		return ResponseEntity.status(HttpStatus.OK).body(transactionService.getAllTransactions(idAccount));
+		List<TransactionModel> transactionModelsList= transactionService.getAllTransactions(idAccount);
+		return ResponseEntity.status(HttpStatus.OK).body(transactionModelsList);
 
 	}
 
