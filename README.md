@@ -8,6 +8,7 @@ API Restful genérica que realiza o gerenciamento de contas bancárias.
 
 # Documentação
 *  A documentação da API foi gerada com Swagger e está disponível em ```http://bankmanagementaws-env.eba-r77cnmrm.us-east-1.elasticbeanstalk.com/swagger-ui.html```
+*  Na pasta resources está contida a collection do postman.
 
 # Diagrama de modelo lógico do banco de dados
 ![image](https://user-images.githubusercontent.com/97842444/170992159-d464df7b-c452-4cbe-ab04-13ea87b4b232.png)
