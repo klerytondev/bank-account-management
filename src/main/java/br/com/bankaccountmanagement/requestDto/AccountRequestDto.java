@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import br.com.bankaccountmanagement.models.enums.AccountType;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * @author: Kleryton de souza
@@ -17,11 +17,11 @@ public class AccountRequestDto {
 
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
-	@ApiModelProperty(notes = "Limite de saque da conta. ")
+	@Schema(description = "Limite de saque da conta. ")
 	@NotNull(message = "{campo.limite.obrigatorio}")
 	private Double withdrawalLimit;
 
-	@ApiModelProperty(notes = "Tipo da conta. CORRENTE ou POUPANCA ")
+	@Schema(description = "Tipo da conta. CORRENTE ou POUPANCA ")
 	private AccountType accountType;
 
 	public AccountRequestDto() {

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * @author: Kleryton de souza
@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class AccountActiveFlagRequestDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(notes = "validar as possiveis entradas para o status da account. Só são permitidas as "
+	@Schema(description = "validar as possiveis entradas para o status da account. Só são permitidas as "
 			+ "entradas: BLOCK|ACTIVE.")
 	@NotNull(message = "{campo.accountStatus.obrigatorio}")
 	private String accountStatus;

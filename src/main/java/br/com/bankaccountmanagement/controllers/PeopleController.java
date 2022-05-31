@@ -14,15 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.bankaccountmanagement.models.PeopleModel;
 import br.com.bankaccountmanagement.requestDto.PeoplerequestDto;
 import br.com.bankaccountmanagement.services.PeopleService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 
 /**
  * @author: Kleryton de souza
  */
 @RestController
 @RequestMapping(value = "/v1/bankAccountManagement")
-@Api(value = "Bank Account Management - API Restfull")
 //Otimiza o acesso a API
 @CrossOrigin(origins = "*")
 public class PeopleController {
@@ -30,7 +28,7 @@ public class PeopleController {
 	@Autowired
 	PeopleService peopleService;
 
-	@ApiOperation(value = "Cria uma nova pessoa.")
+	@Operation(summary = "Cria uma nova pessoa.")
 	@PostMapping("/add/people")
 	public ResponseEntity<Object> createPeople(@RequestBody @Valid PeoplerequestDto peoplerequestDto) {
 		PeopleModel peopleModel = peopleService.createPeople(peoplerequestDto);

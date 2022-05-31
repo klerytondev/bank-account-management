@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * @author: Kleryton de souza
@@ -22,12 +22,12 @@ import io.swagger.annotations.ApiModelProperty;
 
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
-	@ApiModelProperty(notes = "Nome do cliente. ")
+		@Schema(description = "Nome do cliente. ")
 	@NotEmpty(message = "{campo.nome.obrigatorio}")
 	@Length(max = 50, message = "{campo.nome.caracteres}")
 	private String name;
 
-	@ApiModelProperty(notes = "CPF do cliente. ")
+		@Schema(description = "CPF do cliente. ")
 	@CPF(message = "{campo.pessoacpf.nulo}")
 	private String cpf;
 

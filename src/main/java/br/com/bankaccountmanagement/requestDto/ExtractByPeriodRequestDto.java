@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotEmpty;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * @author: Kleryton de souza
@@ -13,14 +13,12 @@ import io.swagger.annotations.ApiModelProperty;
 public class ExtractByPeriodRequestDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@ApiModelProperty(notes = "Data inicial para extrato por periodo. ")
+	@Schema(description = "Data inicial para extrato por periodo. ")
 	@NotEmpty(message = "{campo.initialDate.obrigatorio}")
-//	@Pattern(regexp = "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$", message = "Formato de data incorreto")
 	private String initialDate;
 	
-	@ApiModelProperty(notes = "Data final para extrato por periodo. ")
+	@Schema(description = "Data final para extrato por periodo. ")
 	@NotEmpty(message = "{campo.finalDate.obrigatorio}")
-//	@Pattern(regexp = "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$", message = "Formato de data incorreto")
 	private String finalDate;
 
 	public ExtractByPeriodRequestDto(@NotEmpty(message = "{campo.initialDate.obrigatorio}") String initialDate,

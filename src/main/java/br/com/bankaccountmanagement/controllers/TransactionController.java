@@ -18,16 +18,14 @@ import br.com.bankaccountmanagement.requestDto.DepositRequestDto;
 import br.com.bankaccountmanagement.requestDto.ExtractByPeriodRequestDto;
 import br.com.bankaccountmanagement.requestDto.WithdrawRequestDto;
 import br.com.bankaccountmanagement.services.TransactionService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 
 /**
  * @author: Kleryton de souza
  */
 @RestController
 @RequestMapping(value = "/v1/bankAccountManagement")
-@Api(value = "Bank Account Management - API Restfull")
 //Otimiza o acesso a API
 @CrossOrigin(origins = "*")
 public class TransactionController {
@@ -35,41 +33,41 @@ public class TransactionController {
 	@Autowired
 	TransactionService transactionService;
 
-	@ApiOperation(value = "Realiza o depósito de dinheiro em uma account.")
+	@Operation(summary = "Realiza o depósito de dinheiro em uma account.")
 	@PostMapping("/depositar/{idAccount}")
-	public ResponseEntity<Object> deposit(@ApiParam @Valid @RequestBody DepositRequestDto depositoDTO,
+	public ResponseEntity<Object> deposit(@Parameter @Valid @RequestBody DepositRequestDto depositoDTO,
 			@PathVariable Long idAccount) {
 		TransactionModel transactionModel = transactionService.depositAccount(depositoDTO, idAccount);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Saldo atualizado! " + transactionModel);
 	}
 
-	@ApiOperation(value = "Busca o saldo de uma account.")
+	@Operation(summary = "Busca o saldo de uma account.")
 	@GetMapping("/saldo/{idAccount}")
-	public ResponseEntity<Object> balanceAccount(@ApiParam @PathVariable Long idAccount) {
+	public ResponseEntity<Object> balanceAccount(@Parameter  @PathVariable Long idAccount) {
 		Double balance = transactionService.balanceAccount(idAccount);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Saldo: R$ " + balance);
 	}
 
-	@ApiOperation(value = "Realiza o saque de dinheiro na conta.")
+	@Operation(summary = "Realiza o saque de dinheiro na conta.")
 	@PostMapping("/sacar/{idAccount}")
-	public ResponseEntity<Object> withdraw(@ApiParam @Valid @RequestBody WithdrawRequestDto withdrawRequestDto,
+	public ResponseEntity<Object> withdraw(@Parameter  @Valid @RequestBody WithdrawRequestDto withdrawRequestDto,
 			@PathVariable Long idAccount) {
 		TransactionModel transactionModel = transactionService.withdraw(withdrawRequestDto, idAccount);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Saldo atualizado! " + transactionModel);
 	}
 
-	@ApiOperation(value = "Retorna todas as transações de auma account")
+	@Operation(summary = "Retorna todas as transações de auma account")
 	@GetMapping("/transacoes/{idAccount}")
-	public ResponseEntity<Object> getAllTransactions(@ApiParam @PathVariable Long idAccount) {
+	public ResponseEntity<Object> getAllTransactions(@Parameter @PathVariable Long idAccount) {
 		return ResponseEntity.status(HttpStatus.OK).body(transactionService.getAllTransactions(idAccount));
 
 	}
 
-	@ApiOperation(value = "Retorna as transações de auma account por periodo")
+	@Operation(summary = "Retorna as transações de auma account por periodo")
 	@GetMapping("/transacoes/periodo/{idAccount}")
 	public ResponseEntity<Object> getAllPeriodTransactions(
 			@Valid @RequestBody ExtractByPeriodRequestDto extractByPeriodRequestDto,
-			@ApiParam @PathVariable Long idAccount) {
+			@Parameter @PathVariable Long idAccount) {
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(transactionService.getAllPeriodTransactions(extractByPeriodRequestDto, idAccount));
 

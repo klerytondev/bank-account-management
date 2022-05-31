@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 import br.com.bankaccountmanagement.models.enums.AccountType;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * @author: Kleryton de souza
@@ -16,11 +16,11 @@ import io.swagger.annotations.ApiModelProperty;
 public class DepositRequestDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(notes = "Id da pessoa que a conta pertence. ")
+	@Schema(description = "Tipo da account. CORRENTE|POUPANCA ")
 	@NotNull(message = "{campo.type.obrigatorio}")
 	private AccountType accountType;
 
-	@ApiModelProperty(notes = "Valor do deposito. ")
+	@Schema(description = "Valor do deposito. ")
 	@Positive(message = "O valor deve ser maior que zero")
 	@NotNull(message = "{campo.valordeposito.obrigatorio}")
 	private Double value;

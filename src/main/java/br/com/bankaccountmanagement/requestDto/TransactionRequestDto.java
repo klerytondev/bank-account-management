@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import javax.validation.constraints.NotEmpty;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * @author: Kleryton de souza
@@ -17,7 +17,7 @@ public class TransactionRequestDto {
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
 
-	@ApiModelProperty(notes = "Valor da transação. ")
+	@Schema(description = "Valor da transação. ")
 	@NotEmpty(message = "{campo.valorsaque.obrigatorio}")
 	private Double value;
 
