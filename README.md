@@ -74,7 +74,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialec
 
 ### Status do Projeto
 <h4 align="left"> 
-	🚧  React Select 🚀 in production  🚧
+	🚧  React Select 🚀 concluded  🚧
 </h4>
 
 ### Autor
