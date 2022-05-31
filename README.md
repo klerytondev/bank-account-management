@@ -70,7 +70,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialec
 - [x] Documentação Swagger
 - [x] Tratamento de exceções
 - [X] Deploy do projeto na AWS
-- [ ] Testes Unitários
+- [X] Testes Unitários
 
 ### Status do Projeto
 <h4 align="left"> 
