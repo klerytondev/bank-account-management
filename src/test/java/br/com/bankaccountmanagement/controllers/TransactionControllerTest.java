@@ -129,4 +129,19 @@ public class TransactionControllerTest {
 			.statusCode(400)
 			.extract().response();
 	}
+	
+	@DisplayName("Retorna todas as transações de uma account")
+	@Test
+	public void searchTransactionsSuccessfully() {
+		
+		when(this.transactionService.balanceAccount(1L))
+			.thenReturn(2000.0);
+		given()
+			.contentType(ContentType.JSON)
+		.when()
+			.get("/v1/bankAccountManagement/saldo/{idAccount}", 1L)
+		.then()
+			.statusCode(201)
+			.extract().response();
+	}
 }

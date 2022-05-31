@@ -56,7 +56,7 @@ public class TransactionController {
 		return ResponseEntity.status(HttpStatus.CREATED).body("Saldo atualizado! " + transactionModel);
 	}
 
-	@Operation(summary = "Retorna todas as transações de auma account")
+	@Operation(summary = "Retorna todas as transações de uma account")
 	@GetMapping("/transacoes/{idAccount}")
 	public ResponseEntity<Object> getAllTransactions(@Parameter @PathVariable Long idAccount) {
 		return ResponseEntity.status(HttpStatus.OK).body(transactionService.getAllTransactions(idAccount));
