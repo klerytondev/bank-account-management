@@ -21,6 +21,9 @@ import br.com.bankaccountmanagement.requestDto.AccountActiveFlagRequestDto;
 import br.com.bankaccountmanagement.requestDto.AccountRequestDto;
 import br.com.bankaccountmanagement.utils.Utils;
 
+/**
+ * @author: Kleryton de souza
+ */
 @DisplayName("Testes da service de Account")
 public class AccountServiceTest {
 

@@ -22,12 +22,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 	// Beans Validation para validação de entrada dos objetos
 	// Propriedades baseadas em chave=valor
-		@Schema(description = "Nome do cliente. ")
+	@Schema(description = "Nome do cliente. ")
 	@NotEmpty(message = "{campo.nome.obrigatorio}")
 	@Length(max = 50, message = "{campo.nome.caracteres}")
 	private String name;
 
-		@Schema(description = "CPF do cliente. ")
+	@Schema(description = "CPF do cliente. ")
 	@CPF(message = "{campo.pessoacpf.nulo}")
 	private String cpf;
 

@@ -25,6 +25,9 @@ import br.com.bankaccountmanagement.requestDto.ExtractByPeriodRequestDto;
 import br.com.bankaccountmanagement.requestDto.WithdrawRequestDto;
 import br.com.bankaccountmanagement.utils.Utils;
 
+/**
+ * @author: Kleryton de souza
+ */
 @DisplayName("Testes da service de transactions")
 public class TransactionServiceTest {
 

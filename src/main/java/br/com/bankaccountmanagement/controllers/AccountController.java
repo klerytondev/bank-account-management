@@ -42,9 +42,9 @@ public class AccountController {
 	@PostMapping("/status/{idAccount}")
 	public ResponseEntity<Object> activeFlag(
 			@RequestBody @Valid AccountActiveFlagRequestDto accountActiveFlagRequestDto, @PathVariable Long idAccount) {
-		 AccountModel accountModel = accountService.activeFlag(accountActiveFlagRequestDto, idAccount);
+		accountService.activeFlag(accountActiveFlagRequestDto, idAccount);
 		return ResponseEntity.status(HttpStatus.CREATED)
-				.body("Status da account alterado para: " + accountModel.getActiveFlag().toString());
+				.body("Status da account alterado para: " + accountActiveFlagRequestDto.getAccountStatus());
 	}
 
 }

@@ -16,6 +16,9 @@ import br.com.bankaccountmanagement.requestDto.PeoplerequestDto;
 import br.com.bankaccountmanagement.utils.DateUtils;
 import br.com.bankaccountmanagement.utils.Utils;
 
+/**
+ * @author: Kleryton de souza
+ */
 @DisplayName("Testes da service de People")
 public class PeopleServiceTest {
 

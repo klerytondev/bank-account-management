@@ -45,5 +45,10 @@ public class ExtractByPeriodRequestDto implements Serializable {
 	public void setFinalDate(String finalDate) {
 		this.finalDate = finalDate;
 	}
+
+	@Override
+	public String toString() {
+		return "ExtractByPeriodRequestDto [initialDate=" + initialDate + ", finalDate=" + finalDate + "]";
+	}
 	
 }

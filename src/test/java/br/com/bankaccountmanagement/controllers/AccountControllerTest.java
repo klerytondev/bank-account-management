@@ -19,6 +19,9 @@ import br.com.bankaccountmanagement.services.AccountService;
 import br.com.bankaccountmanagement.utils.Utils;
 import io.restassured.http.ContentType;
 
+/**
+ * @author: Kleryton de souza
+ */
 @DisplayName("Testes da controller de account")
 @WebMvcTest(AccountController.class)
 public class AccountControllerTest {
@@ -46,8 +49,6 @@ public class AccountControllerTest {
 	@DisplayName("Realiza a criação de uma account")
 	@Test
 	public void shouldCreateAccount() {
-		
-		
 		when(this.accountServiceMock.createAccount(accountRequestDto, 1L))
 			.thenReturn(Utils.createAccountModelActive(0.0, 20000.00));
 		given()
@@ -74,21 +75,21 @@ public class AccountControllerTest {
 			.extract().response();
 	}
 
-//	@DisplayName("Altera o status de uma account")
-//	@Test
-//	public void shouldChangeAccountStatus() {
-//		
-//		when(this.accountServiceMock.activeFlag(accountActiveFlagRequestDto, 1L))
-//			.thenReturn(Utils.createAccountModelBlocked(0.0, 20000.00));
-//		given()
-//			.contentType(ContentType.JSON)
-//			.body(accountActiveFlagRequestDto)
-//		.when()
-//			.post("/v1/bankAccountManagement/status/{idAccount}", 1L)
-//		.then()
-//			.statusCode(201)
-//			.extract().response();
-//	}
+	@DisplayName("Altera o status de uma account")
+	@Test
+	public void shouldChangeAccountStatus() {
+		
+		when(this.accountServiceMock.activeFlag(accountActiveFlagRequestDto, 1L))
+			.thenReturn(Utils.createAccountModelBlocked(0.0, 20000.00));
+		given()
+			.contentType(ContentType.JSON)
+			.body(accountActiveFlagRequestDto)
+		.when()
+			.post("/v1/bankAccountManagement/status/{idAccount}", 1L)
+		.then()
+			.statusCode(201)
+			.extract().response();
+	}
 	
 	@DisplayName("Falha ao tentar alterar status de uma account")
 	@Test
