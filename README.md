@@ -8,7 +8,7 @@ API Restful genérica que realiza o gerenciamento de contas bancárias.
 4. Testes Unitários
 
 # Documentação
-*  A documentação da API foi gerada com Swagger e está disponível em ```https://bank-account-deploy.herokuapp.com/swagger-ui```
+*  A documentação da API foi gerada com Swagger e está disponível em ```https://bank-account-deploy.herokuapp.com/swagger-ui.html```
 *  Na pasta resources está contida a collection do postman.
 
 # Diagrama de modelo lógico do banco de dados
