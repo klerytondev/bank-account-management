@@ -37,7 +37,7 @@ public class AccountServiceTest {
 	private AccountRepository accountRepositoryMock;
 
 	@Mock
-	private PeopleRepository peopleRepository;
+	private PeopleRepository peopleRepositoryMock;
 
 	@BeforeEach
 	void init() {
@@ -50,15 +50,16 @@ public class AccountServiceTest {
 		// Cenário
 		// Cria uma pessoa
 		PeopleModel peopleModel = Utils.createPeople("kleryton", "07869696447");
-		// Crio a account
+		// Crio a account ativa
 		AccountModel accountModel = Utils.createAccountModelActive(1200.00, 12000.00);
+		// Seta uma pessoa na conta
 		accountModel.setPeople(peopleModel);
 		// Cria o DTO da requisição de criar account
 		AccountRequestDto accountRequestDto = Utils.createAccountRequestDto();
 
 		// Ação
 		// Recupera a people com Mock do peopleRepository
-		Mockito.when(peopleRepository.findById(1L)).thenReturn(Optional.of(peopleModel));
+		 Mockito.when(peopleRepositoryMock.findById(1L)).thenReturn(Optional.of(peopleModel));
 		// Salva a account com mock do accountRepositoryMock
 		Mockito.when(accountRepositoryMock.save(ArgumentMatchers.any())).thenReturn(accountModel);
 		// Executa o metodo de criar account do accountService
@@ -77,7 +78,7 @@ public class AccountServiceTest {
 		AccountRequestDto accountRequestDto = Utils.createAccountRequestDto();
 
 		// Recupera a people com Mock do peopleRepository
-		Mockito.when(peopleRepository.findById(1L)).thenReturn(Optional.empty());
+		Mockito.when(peopleRepositoryMock.findById(1L)).thenReturn(Optional.empty());
 
 		// Ação/Validação
 		// Executa o metodo de deposito da tranctionService e valida a exception lançada
