@@ -94,19 +94,21 @@ public class TransactionService {
 			// Atualizo o limite
 			accocuntModelOptional.get().setWithdrawalLimit(
 					accocuntModelOptional.get().getWithdrawalLimit() - withdrawRequestDto.getValue());
+			TransactionModel transactionModelPersisit = new TransactionModel();
+
+			// Cria registro da transação para a operação deposito
+			transactionModelPersisit.setValue(withdrawRequestDto.getValue());
+			transactionModelPersisit.setIdAccount(idAccount);
+
+			// Salva no banco uma nova transação
+			TransactionModel saved = transactionRepository.save(transactionModelPersisit);
+			return saved;
+
 		} else {
 			// Exceção para caso não haja saldo suficiente para saque na account
 			throw new IntegridadeDeDadosException("Insufficient balance for withdrawal.");
 		}
-		TransactionModel transactionModelPersisit = new TransactionModel();
 
-		// Cria registro da transação para a operação deposito
-		transactionModelPersisit.setValue(withdrawRequestDto.getValue());
-		transactionModelPersisit.setIdAccount(idAccount);
-
-		// Salva no banco uma nova transação
-		TransactionModel saved = transactionRepository.save(transactionModelPersisit);
-		return saved;
 	}
 
 	// Retorna todas as transações de uma account
